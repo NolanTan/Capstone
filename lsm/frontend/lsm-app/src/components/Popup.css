@@ -39,9 +39,9 @@
     }
 }
 
-.Load-options { 
+.Panel { 
     background-color: rgb(36, 36, 36);
-    max-height: 400px;
+    max-height: 600px;
     padding: 20px;
     border-radius: 15px;
     overflow-y: auto;

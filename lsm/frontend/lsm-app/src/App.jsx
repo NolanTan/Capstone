@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import LoadPopup from './components/LoadPopup'
+import Popup from './components/Popup'
 import Script from './components/Script'
-import SavePopup from './components/SavePopup'
 import SaveForm from './components/SaveForm'
 import './App.css'
 
@@ -56,17 +55,17 @@ function App() {
           <button onClick={() => setSavePopup(true)}>Save Script</button>
         </div>
 
-        <LoadPopup trigger={loadPopup} setTrigger={setLoadPopup}>
+        <Popup trigger={loadPopup} setTrigger={setLoadPopup}>
           {scriptsArray.map(({ name, text }, index) => (
                 <div key={name} onClick={() => setScriptNum(index)}>
                   <Script name={name} text={text}/>
                 </div>
           ))}
-        </LoadPopup>
+        </Popup>
 
-        <SavePopup trigger={savePopup} setTrigger={setSavePopup}>
+        <Popup trigger={savePopup} setTrigger={setSavePopup}>
             <SaveForm/>
-        </SavePopup>
+        </Popup>
       </div>
     </div>
   )

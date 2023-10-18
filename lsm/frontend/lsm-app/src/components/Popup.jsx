@@ -1,14 +1,15 @@
 import './Popup.css';
 
-function SavePopup(props) {
+function Popup(props) {
     return (props.trigger) ? (
         <div className="Popup">
             <div className="Popup-inner">
                 <button className="Close-btn" onClick={() => props.setTrigger(false)}>X</button>
-                { props.children }
+                <br/><br/>
+                <div className = "Panel">{ props.children }</div>
             </div>
         </div>
     ) : "";
 }
 
-export default SavePopup;
+export default Popup;
