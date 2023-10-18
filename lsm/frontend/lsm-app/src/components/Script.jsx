@@ -1,7 +1,12 @@
+import './Script.css';
+
 function Script(props) {
     return (
-        <div>
-            <p><button>{props.name}</button></p>
+        <div className="script-container">
+            <button className="script-button"> 
+                <div className="text-file-icon">{props.text}</div>
+                <div className="script-name">{props.name}</div>
+            </button>
         </div>
     )
 }

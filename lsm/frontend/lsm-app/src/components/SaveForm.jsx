@@ -69,9 +69,11 @@ function SaveForm() {
                 value={value2} 
                 onChange={handleValue2Change} 
             />
-            {instructionsError && <p style={{fontSize: 'small'}}>Warning: formatting error</p>}
+            {instructionsError && <p style={{fontSize: 'small', margin: '0'}}>
+                Warning: formatting error
+            </p>}
 
-            <br/>
+            <br/><br/>
             <button type="submit">Submit</button>
         </form>
         <p>{response}</p>

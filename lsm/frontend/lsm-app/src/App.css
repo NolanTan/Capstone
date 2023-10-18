@@ -47,3 +47,9 @@
   background-color: #242424; 
   border-top: 2px solid lightgray; 
 }
+
+.script-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Create 3 equally spaced columns */
+  gap: 20px;
+}

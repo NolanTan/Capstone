@@ -11,7 +11,7 @@ function App() {
   const[loadPopup, setLoadPopup] = useState(false);
   const[savePopup, setSavePopup] = useState(false);
 
-  // Function that fetches data from backend
+  // Function that fetches data from backend (called at start and when loading scripts)
   const fetchData = async () => {
     try {
       const response = await fetch('http://localhost:3001');
@@ -22,12 +22,8 @@ function App() {
     }
   };
 
-  // Effect to fetch script data
-  useEffect(() => {  
-    fetchData(); // Initial fetch
-    // const pollingInterval = setInterval(fetchData, 30000); // Poll every 30 seconds
-    // return () => clearInterval(pollingInterval); // Clear interval when the component unmounts
-  }, []);
+  // Effect to initially fetch script data upon start up
+  useEffect(() => { fetchData(); }, []);
 
   return (
     <div className="app-container">
@@ -56,16 +52,16 @@ function App() {
         </div>
 
         <Popup trigger={loadPopup} setTrigger={setLoadPopup}>
-          {scriptsArray.map(({ name, text }, index) => (
-                <div key={name} onClick={() => setScriptNum(index)}>
-                  <Script name={name} text={text}/>
-                </div>
-          ))}
+          <div className="script-container">
+            {scriptsArray.map(({ name, text }, index) => (
+                  <div key={name} onClick={() => setScriptNum(index)}>
+                    <Script name={name} text={text}/>
+                  </div>
+            ))}
+          </div>
         </Popup>
 
-        <Popup trigger={savePopup} setTrigger={setSavePopup}>
-            <SaveForm/>
-        </Popup>
+        <Popup trigger={savePopup} setTrigger={setSavePopup}><SaveForm/></Popup>
       </div>
     </div>
   )
