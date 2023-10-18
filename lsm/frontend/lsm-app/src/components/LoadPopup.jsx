@@ -5,7 +5,8 @@ function LoadPopup(props) {
         <div className="Popup">
             <div className="Popup-inner">
                 <button className="Close-btn" onClick={() => props.setTrigger(false)}>X</button>
-                { props.children }
+                <br/><br/>
+                <div className = "Load-options">{ props.children }</div>
             </div>
         </div>
     ) : "";

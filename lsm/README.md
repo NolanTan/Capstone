@@ -37,3 +37,5 @@
 # More Info
     This project is currently in development. Currently working on:
         - Loading and saving features
+        - CSS layout
+        - Memory and Disk component(s) visualization

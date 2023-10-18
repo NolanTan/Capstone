@@ -16,16 +16,16 @@
     flex-direction: column;
     position: relative;
     text-align: left;
+    background-color: black;
     padding: 64px;
     width: 100%;
     max-width: 850px;
-    background-color: black;
     border-radius: 15px;
     font-size: 20px;
 }
 
 .Popup-inner .Close-btn {
-    background: black;
+    background: transparent;
     border: none;
     font-size: 35px;
     font-weight: bold;
@@ -37,4 +37,12 @@
     &:hover {
         opacity: .6;
     }
+}
+
+.Load-options { 
+    background-color: rgb(36, 36, 36);
+    max-height: 400px;
+    padding: 20px;
+    border-radius: 15px;
+    overflow-y: auto;
 }

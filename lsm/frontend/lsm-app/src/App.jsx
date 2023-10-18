@@ -12,53 +12,63 @@ function App() {
   const[loadPopup, setLoadPopup] = useState(false);
   const[savePopup, setSavePopup] = useState(false);
 
-  // Effect to fetch script data repeatedly using polling
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3001');
-        const data = await response.json();
-        setScriptsArray(data);
-      } catch (error) {
-        console.error('Error fetching data from backend:', error);
-      }
-    };
-  
+  // Function that fetches data from backend
+  const fetchData = async () => {
+    try {
+      const response = await fetch('http://localhost:3001');
+      const data = await response.json();
+      setScriptsArray(data);
+    } catch (error) {
+      console.error('Error fetching data from backend:', error);
+    }
+  };
+
+  // Effect to fetch script data
+  useEffect(() => {  
     fetchData(); // Initial fetch
-    const pollingInterval = setInterval(fetchData, 2000); // Poll every 2 seconds
-    return () => clearInterval(pollingInterval); // Clear interval when the component unmounts
+    // const pollingInterval = setInterval(fetchData, 30000); // Poll every 30 seconds
+    // return () => clearInterval(pollingInterval); // Clear interval when the component unmounts
   }, []);
 
   return (
-    <>
-      <h1>
-        Currently loaded: {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["name"] : "..."}
-      </h1>
+    <div className="app-container">
 
-      <h2>
-        {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["text"] : "Data Not Loaded"}
-      </h2>
-
-      <div className="card">
-        <button onClick={() => setLoadPopup(true)}>Load Script</button>
+      <div className="left-pane">
+        Work in progress
       </div>
 
-      <div className="card">
-        <button onClick={() => setSavePopup(true)}>Save Script</button>
+      <div className="right-pane">
+        <h3>
+          Current script: {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["name"] : "..."}
+        </h3>
+
+        <text>
+          {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["text"] : "Data Not Loaded"}
+        </text>
       </div>
 
-      <LoadPopup trigger={loadPopup} setTrigger={setLoadPopup}>
-        {scriptsArray.map(({ name, text }, index) => (
-              <div key={name} onClick={() => setScriptNum(index)}>
-                <Script name={name} text={text}/>
-              </div>
-        ))}
-      </LoadPopup>
+      <div className="bottom-pane">
+        <div className="card">
+          <button onClick={() => {setLoadPopup(true); fetchData();}}>Load Script</button>
+        </div>
 
-      <SavePopup trigger={savePopup} setTrigger={setSavePopup}>
-          <SaveForm></SaveForm>
-      </SavePopup>
-    </>
+        <div className="card">
+          <button onClick={() => setSavePopup(true)}>Save Script</button>
+        </div>
+
+        <LoadPopup trigger={loadPopup} setTrigger={setLoadPopup}>
+          {scriptsArray.map(({ name, text }, index) => (
+                <div key={name} onClick={() => setScriptNum(index)}>
+                  <Script name={name} text={text}/>
+                </div>
+          ))}
+        </LoadPopup>
+
+        <SavePopup trigger={savePopup} setTrigger={setSavePopup}>
+            <SaveForm/>
+        </SavePopup>
+      </div>
+    </div>
   )
 }
 
