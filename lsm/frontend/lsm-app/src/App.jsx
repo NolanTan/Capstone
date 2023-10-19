@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Popup from './components/Popup'
 import Script from './components/Script'
 import SaveForm from './components/SaveForm'
+import LSMTree from './components/LSMTree'
 import './App.css'
 
 function App() {
@@ -28,8 +29,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="left-pane">
-        <img style={{width: "400px"}} src="../lsm-logo.png" alt="LSM logo"/>
-        Work in progress...
+        <LSMTree />
       </div>
 
       <div className="right-pane">
