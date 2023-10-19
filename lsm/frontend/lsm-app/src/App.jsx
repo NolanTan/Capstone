@@ -27,9 +27,9 @@ function App() {
 
   return (
     <div className="app-container">
-
       <div className="left-pane">
-        Work in progress
+        <img style={{width: "400px"}} src="../lsm-logo.png" alt="LSM logo"/>
+        Work in progress...
       </div>
 
       <div className="right-pane">
@@ -37,9 +37,9 @@ function App() {
           Current script: {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["name"] : "..."}
         </h3>
 
-        <text>
+        <p>
           {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["text"] : "Data Not Loaded"}
-        </text>
+        </p>
       </div>
 
       <div className="bottom-pane">
