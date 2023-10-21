@@ -12,7 +12,7 @@ class Disk extends Component {
 
     render() {
         return (
-            <div className="disk"> {/* Style div to look like a disk */}
+            <div className="disk">
                 Disk
                 <SSTable />
                 {/* Show SSTables */}

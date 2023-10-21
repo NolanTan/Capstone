@@ -5,7 +5,8 @@ import './Memtable.css';
 class Memtable extends Component { 
     constructor() {
         super();
-        this.memtable = new LinkedList();
+        // Memtable currently using a linked list data structure
+        this.memtable = new LinkedList(); 
     }
 
     insert(name, age) {

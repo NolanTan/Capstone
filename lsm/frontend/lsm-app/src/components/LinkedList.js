@@ -15,9 +15,8 @@ export class LinkedList {
     // Add stuff to linked list
     append(name, age) {
         const newNode = new Node(name, age);
-        if (!this.head) {
-            this.head = newNode;
-        } else {
+        if (!this.head) this.head = newNode;
+        else {
             let current = this.head;
             while (current.next) current = current.next;
             current.next = newNode;
