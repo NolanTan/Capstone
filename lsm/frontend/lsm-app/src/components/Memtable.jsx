@@ -1,19 +1,20 @@
-import { LinkedList } from './LinkedList';
 import { Component } from 'react';
+import SkipList from './SkipList';
 import './Memtable.css';
 
 class Memtable extends Component { 
     constructor() {
         super();
-        // Memtable currently using a linked list data structure
-        this.memtable = new LinkedList(); 
+        this.memtable = new SkipList(); 
     }
 
-    insert(name, age) {
-        this.memtable.append(name, age);
+    insert(id, name) {
+        this.memtable.insert(id, name);
     }
 
-    // Add read stuff later
+    search(id) {
+        return this.memtable.search(id);
+    }
 
     render() {
         return (

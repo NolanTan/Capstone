@@ -22,7 +22,7 @@ function SaveForm() {
 
     // Check the format of instructions using RegEx
     const checkInstructionsFormat = (input) => {
-        const validFormat = /^(W|R) [A-Za-z]+ \d+(, (W|R) [A-Za-z]+ \d+)*$/;
+        const validFormat = /^(W|R) \d+ [A-Za-z]+(, (W|R) \d+ [A-Za-z]+)*$/;
         if(validFormat.test(input)) setInstructionsError(false);
         else setInstructionsError(true);
     }

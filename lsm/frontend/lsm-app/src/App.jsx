@@ -23,13 +23,23 @@ function App() {
     }
   };
 
+  // Function to create an array of instructions out of the script's text
+  const textToArray = (text) => {
+    if(text) 
+      return text.split(',').map(value => value.trim());
+    return [];
+  }
+
   // Effect to initially fetch script data upon start up
   useEffect(() => { fetchData(); }, []);
+
+  // Create instructions array
+  const instructions = textToArray(scriptsArray[scriptNum] ? scriptsArray[scriptNum]["text"] : "");
 
   return (
     <div className="app-container">
       <div className="left-pane">
-        <LSMTree />
+        <LSMTree values={instructions}/>
       </div>
 
       <div className="right-pane">
@@ -37,9 +47,11 @@ function App() {
           Current script: {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["name"] : "..."}
         </h3>
 
-        <p>
-          {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["text"] : "Data Not Loaded"}
-        </p>
+        <ul>
+          {instructions.map((instruction, index) => (
+            <li key={index}>{instruction}</li>
+          ))}
+        </ul>
       </div>
 
       <div className="bottom-pane">
