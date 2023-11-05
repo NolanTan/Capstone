@@ -99,4 +99,8 @@ SkipList.prototype.getAllLevels = function() {
     return allLevels;
 }
 
+SkipList.prototype.clear = function() {
+    this.head = new ListNode(null, null);
+}
+
 export default SkipList;

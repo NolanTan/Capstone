@@ -18,6 +18,11 @@ class Memtable extends Component {
         return this.memtable.search(id);
     }
 
+    // Clear memtable
+    clear(){
+        this.memtable.clear();
+    }
+
     render() {
         const baseLevelNodes = this.memtable.getBaseLevel();
 

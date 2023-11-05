@@ -10,9 +10,12 @@ class LSMTree extends Component {
         this.memtableRef = React.createRef(); // Maybe reference state of the memtable
     }
 
-    // If the LSMTree component updates, reset index
+    // If the LSM-Tree component updates, reset index and clear memtable
     componentDidUpdate(prevProps) {
-        if(prevProps.instructions !== this.props.instructions) this.setState({ currentIndex: 0 });
+        if(prevProps.instructions !== this.props.instructions){
+            this.setState({ currentIndex: 0 });
+            this.memtableRef.current.clear();
+        }
     }
 
     // Function to process instruction and do necessary tasks
