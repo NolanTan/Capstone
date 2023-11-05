@@ -11,6 +11,7 @@ function App() {
   const[scriptNum, setScriptNum] = useState(0);
   const[loadPopup, setLoadPopup] = useState(false);
   const[savePopup, setSavePopup] = useState(false);
+  const[instructions, setInstructions] = useState([]);
 
   // Function that fetches data from backend (called at start and when loading scripts)
   const fetchData = async () => {
@@ -30,16 +31,18 @@ function App() {
     return [];
   }
 
-  // Effect to initially fetch script data upon start up
+  // Effect to initially fetch script data upon start up (when component mounts)
   useEffect(() => { fetchData(); }, []);
 
-  // Create instructions array
-  const instructions = textToArray(scriptsArray[scriptNum] ? scriptsArray[scriptNum]["text"] : "");
+  // Effect to update instructions when scriptNum or scriptsArray changes
+  useEffect(() => {
+    setInstructions(textToArray(scriptsArray[scriptNum] ? scriptsArray[scriptNum]["text"] : "")); 
+  }, [scriptNum, scriptsArray]);
 
   return (
     <div className="app-container">
       <div className="left-pane">
-        <LSMTree values={instructions}/>
+        {instructions.length > 0 && <LSMTree instructions={instructions} />}
       </div>
 
       <div className="right-pane">
