@@ -4,7 +4,6 @@ import Disk from './Disk';
 import './LSMTree.css';
 
 class LSMTree extends Component {
-
     constructor(props) {
         super(props);
         this.state = {currentIndex: 0};
@@ -21,15 +20,15 @@ class LSMTree extends Component {
         const [operation, id, name] = instruction.split(' ');
 
         if(operation === "W") {
-            console.log("Write: ", id, name);
+            console.log("Write:", id, name); // Testing
             this.memtableRef.current.insert(id, name);
         } else if(operation === "R") {
             const result = this.memtableRef.current.search(id);
-            console.log("Read result:", result);
+            console.log("Read result:", result); // Testing
         }
     }
 
-    // Function to perform instruction when a button is pressed
+    // Function to perform instruction when the button is pressed
     doInstruction = () => {
         const {instructions} = this.props; // Access instructions from props
         const {currentIndex} = this.state; // Access index from state
@@ -44,8 +43,8 @@ class LSMTree extends Component {
     render() {
         return (
             <div className="lsm">
-                <button onClick={this.doInstruction}>Process Next Instruction</button>
-                <h1>User →</h1>
+                <button onClick={this.doInstruction}>Do Next Instruction</button>
+                <h1>→</h1>
                 <Memtable ref={this.memtableRef} />
                 <h1>→</h1>
                 <Disk />

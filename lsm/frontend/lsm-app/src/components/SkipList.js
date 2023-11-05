@@ -14,6 +14,7 @@ class SkipList {
 }
 
 SkipList.prototype.insert = function(key, value) {
+    key = parseInt(key); // Convert key from string to int for comparisons
     const nodes = [];
     let node = this.head;
 
@@ -27,7 +28,7 @@ SkipList.prototype.insert = function(key, value) {
         }
     }
 
-    // Insert node and promote as necessary
+    // Insert node and "promote" based on a "coin toss"
     let shouldPromote = true;
     let downNode = null;
     while(shouldPromote && nodes.length) {
@@ -36,7 +37,7 @@ SkipList.prototype.insert = function(key, value) {
         newNode.down = downNode;
         newNode.right = node.right;
         node.right = newNode;
-        shouldPromote = Math.random() < 0.5;
+        shouldPromote = Math.random() < 0.5; // Coin toss
         downNode = newNode;
     }
 
@@ -61,6 +62,41 @@ SkipList.prototype.search = function(key) {
     }
 
     return null; // Node not found
+}
+
+// Returns all nodes to be displayed on frontend
+SkipList.prototype.getBaseLevel = function() {
+    const baseLevelNodes = []
+    let node = this.head;
+    while(node.down) node = node.down;
+
+    while(node.right){
+        node = node.right
+        baseLevelNodes.push(node);
+    }
+
+    return baseLevelNodes;
+}
+
+// Function to return all levels of the SkipList (testing/bug fixing)
+SkipList.prototype.getAllLevels = function() {
+    const allLevels = [];
+    let currentLevel = this.head;
+
+    while (currentLevel) {
+        const nodesAtLevel = [];
+        let node = currentLevel;
+
+        while (node) {
+            nodesAtLevel.push(node);
+            node = node.right;
+        }
+
+        allLevels.push(nodesAtLevel);
+        currentLevel = currentLevel.down;
+    }
+
+    return allLevels;
 }
 
 export default SkipList;
