@@ -12,6 +12,7 @@ function App() {
   const[loadPopup, setLoadPopup] = useState(false);
   const[savePopup, setSavePopup] = useState(false);
   const[instructions, setInstructions] = useState([]);
+  const[currIndex, setCurrIndex] = useState(0);
 
   // Function that fetches data from backend (called at start and when loading scripts)
   const fetchData = async () => {
@@ -37,12 +38,14 @@ function App() {
   // Effect to update instructions when scriptNum or scriptsArray changes
   useEffect(() => {
     setInstructions(textToArray(scriptsArray[scriptNum] ? scriptsArray[scriptNum]["text"] : "")); 
+    setCurrIndex(0);
   }, [scriptNum, scriptsArray]);
 
   return (
     <div className="app-container">
       <div className="left-pane">
-        {instructions.length > 0 && <LSMTree instructions={instructions} />}
+        {instructions.length > 0 &&
+          <LSMTree instructions={instructions} currIndex={currIndex} setCurrIndex={setCurrIndex}/>}
       </div>
 
       <div className="right-pane">
@@ -52,7 +55,7 @@ function App() {
 
         <ol>
           {instructions.map((instruction, index) => (
-            <li key={index}>{instruction}</li>
+            <li key={index} className={index === currIndex ? 'highlighted' : ''}>{instruction}</li>
           ))}
         </ol>
       </div>

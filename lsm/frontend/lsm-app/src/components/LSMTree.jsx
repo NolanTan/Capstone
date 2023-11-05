@@ -6,7 +6,7 @@ import './LSMTree.css';
 class LSMTree extends Component {
     constructor(props) {
         super(props);
-        this.state = {currentIndex: 0};
+        this.state = {currentIndex: props.currIndex};
         this.memtableRef = React.createRef(); // Maybe reference state of the memtable
     }
 
@@ -39,7 +39,8 @@ class LSMTree extends Component {
 
         if(currentIndex < instructions.length) {
             this.processInstruction(instructions[currentIndex]);
-            this.setState({currentIndex: currentIndex + 1});
+            this.setState({currentIndex: currentIndex + 1}); // Update for LSM Tree
+            this.props.setCurrIndex(this.props.currIndex + 1); // Update for App.jsx highlighting
         }
     }
 
