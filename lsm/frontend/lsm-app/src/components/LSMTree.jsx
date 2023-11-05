@@ -8,17 +8,14 @@ class LSMTree extends Component {
     // Some sort of code to handle data/instructions between memory and disk component
 
     render() {
-        const {values} = this.props; // Receive
 
         return (
             <div className="lsm">
                 <h1>User →</h1>
-                <Memtable values={values}/>
+                <Memtable />
                 <h1>→</h1>
                 <Disk />
             </div>
-
-
         )
     }
 }

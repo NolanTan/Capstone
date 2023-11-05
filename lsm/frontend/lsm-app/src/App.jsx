@@ -47,11 +47,11 @@ function App() {
           Current script: {scriptsArray[scriptNum] ? scriptsArray[scriptNum]["name"] : "..."}
         </h3>
 
-        <ul>
+        <ol>
           {instructions.map((instruction, index) => (
             <li key={index}>{instruction}</li>
           ))}
-        </ul>
+        </ol>
       </div>
 
       <div className="bottom-pane">
