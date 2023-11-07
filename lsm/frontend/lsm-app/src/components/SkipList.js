@@ -55,8 +55,8 @@ SkipList.prototype.search = function(key) {
 
     // Locate the node
     while(node) {
-        if(!node.right || node.right.key > key) node = node.down;
-        else if(node.right.key === key) return node.right.value;
+        if(!node.right || parseInt(node.right.key) > parseInt(key)) node = node.down;
+        else if(parseInt(node.right.key) === parseInt(key)) return node.right.value;
         else node = node.right;
     }
 
