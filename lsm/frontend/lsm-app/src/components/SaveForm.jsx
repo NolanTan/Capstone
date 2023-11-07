@@ -62,7 +62,7 @@ function SaveForm() {
                 onChange={handleValue1Change} 
             />
 
-            <h4>Instructions (ex: W Nolan 21, R Nolan 21, W Bob 45):</h4>
+            <h4>Instructions (ex: W 21 Nolan, R 21, W 45 Bob):</h4>
             <textarea 
                 style={{fontSize: '16px', width:'100%', resize: 'none'}} 
                 rows="6"  

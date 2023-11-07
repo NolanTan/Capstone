@@ -24,6 +24,7 @@ class Memtable extends Component {
     }
 
     render() {
+        // Displayed in memtable visualization
         const baseLevelNodes = this.memtable.getBaseLevel();
 
         // Printing all levels for bug fixing
