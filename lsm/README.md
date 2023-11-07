@@ -2,11 +2,12 @@
     CS 495: Capstone I
     Advisor: Dr. Holliday
     Author: Nolan Flinchum
-    Version: 10/5/2023
+    Version: 11/6/2023
 
 # Description
     An LSM tree is a data structure with performance characteristics that make it very attractive
-    to store date with more write intensive throughput.
+    to store date with more write intensive throughput. It uses a memory component and disk
+    components to store data in a hierarchical manner.
 
     This project aims to create a web application to educate users on LSM trees. 
 
@@ -39,3 +40,4 @@
         - Loading and saving features
         - CSS layout
         - Memory and Disk component(s) visualization
+        - Intruction processing
