@@ -26,9 +26,8 @@ class LSMTree extends Component {
             console.log("Write:", id, name); // Testing
             this.memtableRef.current.insert(id, name);
         } else if(operation === "R") {
-            console.log("ID:", id);
             const result = this.memtableRef.current.search(id);
-            console.log("Read result:", result); // Testing
+            console.log("Read result of", id + ":", result); // Testing
         }
     }
 
