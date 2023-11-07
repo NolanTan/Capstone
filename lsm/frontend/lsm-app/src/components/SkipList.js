@@ -14,13 +14,12 @@ class SkipList {
 }
 
 SkipList.prototype.insert = function(key, value) {
-    key = parseInt(key); // Convert key from string to int for comparisons
     const nodes = [];
     let node = this.head;
 
     // Locate insertion point
     while(node) {
-        if(!node.right || node.right.key > key) {
+        if(!node.right || node.right.key > parseInt(key)) {
             nodes.unshift(node);
             node = node.down;
         } else {
