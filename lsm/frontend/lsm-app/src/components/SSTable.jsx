@@ -20,10 +20,17 @@ class SSTable extends Component {
     }
 
     render() {
+        console.log(this.data);
+
         return (
-            <div> {/* Style div to make SSTable look pretty */}
-                SSTable holds data
-                {/* Show data in SSTable */}
+            <div className="sstable-container">
+                <div className="sstable"> 
+                    {this.props.data.map((item, index) => (
+                        <div key={index} className="sstable-item">
+                            {item.key}: {item.value}
+                        </div>
+                    ))}
+                </div>
             </div>
         )
     }

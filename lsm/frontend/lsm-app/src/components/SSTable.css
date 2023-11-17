@@ -1,0 +1,14 @@
+.sstable-container {
+    border: 1px solid white; /* White border around all items */
+    width: 200px;
+}
+
+.sstable {
+    display: flex;
+    flex-direction: column;
+}
+
+.sstable-item {
+    border-bottom: 1px solid #ffffff; /* White border between items */
+    padding: 5px 0;
+}

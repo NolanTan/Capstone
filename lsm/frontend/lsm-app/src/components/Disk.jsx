@@ -8,14 +8,22 @@ class Disk extends Component {
         this.sstables = [];
     }
 
-    // Code to handle SSTables
+    addSSTable(nodes) {
+        const sstable = new SSTable();
+
+        for(let i = 0; i < nodes.length; i++) 
+            sstable.insert(nodes[i].key, nodes[i].value);
+
+        this.sstables.push(sstable);
+    }
 
     render() {
         return (
             <div className="disk">
                 Disk
-                <SSTable />
-                {/* Show SSTables */}
+                {this.sstables.map((sstable, index) => (
+                    <SSTable key={index} data={sstable.data} />
+                ))}
             </div>
         )
     }

@@ -7,7 +7,8 @@ class LSMTree extends Component {
     constructor(props) {
         super(props);
         this.state = {currentIndex: props.currIndex};
-        this.memtableRef = React.createRef(); // Maybe reference state of the memtable
+        this.memtableRef = React.createRef(); // Reference of the memtable
+        this.diskRef = React.createRef(); // Reference of the disk
     }
 
     // If the LSM-Tree component updates, reset index and clear memtable
@@ -15,6 +16,7 @@ class LSMTree extends Component {
         if(prevProps.instructions !== this.props.instructions){
             this.setState({ currentIndex: 0 });
             this.memtableRef.current.clear();
+            // Maybe clear disk
         }
     }
 
@@ -25,6 +27,16 @@ class LSMTree extends Component {
         if(operation === "W") {
             console.log("Write:", id, name); // Testing
             this.memtableRef.current.insert(id, name);
+            console.log(this.memtableRef.current.size);
+
+            if(this.memtableRef.current.size > 10) {
+                let nodes = this.memtableRef.current.memtable.getBaseLevel();
+                nodes.pop(); // Remove last element
+                this.diskRef.current.addSSTable(nodes);
+                console.log(this.diskRef.current.sstables);
+                console.log(this.diskRef.current.sstables[0].data[0].key);
+            }
+
         } else if(operation === "R") {
             const result = this.memtableRef.current.search(id);
             console.log("Read result of", id + ":", result); // Testing
@@ -51,7 +63,7 @@ class LSMTree extends Component {
                 <h1>→</h1>
                 <Memtable ref={this.memtableRef} />
                 <h1>→</h1>
-                <Disk />
+                <Disk ref={this.diskRef}/>
             </div>
         )
     }

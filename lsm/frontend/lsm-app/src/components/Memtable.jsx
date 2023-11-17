@@ -6,11 +6,13 @@ class Memtable extends Component {
     constructor() {
         super();
         this.memtable = new SkipList(); 
+        this.size = 0;
     }
 
     // Insert data into Memtable/SkipList
-    insert(id, name) {
+    insert(id, name) {  
         this.memtable.insert(id, name);
+        this.size++;
     }
 
     // Search for ID in Memtable/SkipList
@@ -28,8 +30,8 @@ class Memtable extends Component {
         const baseLevelNodes = this.memtable.getBaseLevel();
 
         // Printing all levels for bug fixing
-        const allLevels = this.memtable.getAllLevels();
-        console.log(allLevels) 
+        //const allLevels = this.memtable.getAllLevels();
+        //console.log(allLevels) 
 
         return (
             <div className="memtable">
