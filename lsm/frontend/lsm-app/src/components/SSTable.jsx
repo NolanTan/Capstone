@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import './SSTable.css';
+import './LSMTree.css';
 
 class SSTable extends Component {
     constructor() {
@@ -20,8 +20,6 @@ class SSTable extends Component {
     }
 
     render() {
-        console.log(this.data);
-
         return (
             <div className="sstable-container">
                 <div className="sstable"> 

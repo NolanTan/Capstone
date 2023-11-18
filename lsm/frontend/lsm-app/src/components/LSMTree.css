@@ -1,6 +1,88 @@
+/** This CSS contains all stylings needed by different LSM Tree components. */
+
 .lsm {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 2rem;
+}
+
+/* USER SECTION */
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* MEMORY COMPONENT SECTION */
+
+.memtable-container {
+    background-color: rgb(91, 55, 120);
+    height: 400px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid white;
+    margin: 2rem;
+}
+
+.memtable {
+    border-top: 1px solid white; 
+}
+
+.memtable-item {
+    border-bottom: 1px solid white;
+    padding: 3px 0;
+}
+
+/* DISK COMPONENT SECTION */
+
+.disk-container {
+    background-color: rgb(148, 84, 0);
+    height: 600px;
+    width: 600px;
+    padding: 40px;
+    border-radius: 60px;
+    border: 2px solid white;
+    margin: 2rem;
+}
+
+.disk {
+    height: 530px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.disk::-webkit-scrollbar {
+    background-color: darkslategray;
+    border-radius: 100px; 
+    width: 10px;
+}
+
+.disk::-webkit-scrollbar-thumb {
+    background-color: gray; 
+    border-radius: 100px; 
+}
+
+/* SSTABLE SECTION */
+
+.sstable-container {
+    border-top: 1px solid white; 
+    border-right: 1px solid white;     
+    border-left: 1px solid white; 
+    width: 150px;
+    max-height: 250px;
+}
+
+.sstable {
+    display: flex;
+    flex-direction: column;
+}
+
+.sstable-item {
+    border-bottom: 1px solid white; 
 }

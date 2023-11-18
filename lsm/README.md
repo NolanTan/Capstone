@@ -41,3 +41,11 @@
         - CSS layout
         - Memory and Disk component(s) visualization
         - Intruction processing
+        - Flushing
+        - Might have to do "tombstone handling": https://disc-projects.bu.edu/lethe/
+
+# Questions?
+    If you have any questions about this project, feel free to reach out
+
+    Email: nolan@flinchum.net
+    Discord: nolantan

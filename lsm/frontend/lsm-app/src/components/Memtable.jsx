@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import SkipList from './SkipList';
-import './Memtable.css';
+import './LSMTree.css';
 
 class Memtable extends Component { 
     constructor() {
@@ -23,22 +23,23 @@ class Memtable extends Component {
     // Clear memtable
     clear(){
         this.memtable.clear();
+        this.size = 0;
     }
 
     render() {
         // Displayed in memtable visualization
         const baseLevelNodes = this.memtable.getBaseLevel();
 
-        // Printing all levels for bug fixing
-        //const allLevels = this.memtable.getAllLevels();
-        //console.log(allLevels) 
+        // Printing all levels for presentation maybe?
+        const allLevels = this.memtable.getAllLevels();
+        console.log(allLevels) 
 
         return (
-            <div className="memtable">
+            <div className="memtable-container">
                 <h3>Memtable:</h3>
-                <div>
+                <div className={this.size === 0 ? "" : "memtable"}>
                     {baseLevelNodes.map((node, index) => (
-                        <div key={index}>
+                        <div key={index} className="memtable-item">
                             {node.key} {node.value}
                         </div>
                     ))}
