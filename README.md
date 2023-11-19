@@ -1,7 +1,7 @@
 <h1 align="center">
     <br>
         <a href="https://github.com/NolanTan/Capstone-1">
-            <img src="lsm/frontend/lsm-app/lsm-logo.png" alt="LSM Tree Education Application" width="400">
+            <img src="lsm/frontend/lsm-app/lsm-logo.png" alt="LSM" width="400">
         </a>
     <br>
         LSM Tree Education Application
