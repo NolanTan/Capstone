@@ -31,8 +31,7 @@ class Memtable extends Component {
         const baseLevelNodes = this.memtable.getBaseLevel();
 
         // Printing all levels for presentation maybe?
-        const allLevels = this.memtable.getAllLevels();
-        console.log(allLevels) 
+        console.log(this.memtable.getAllLevels());
 
         return (
             <div className="memtable-container">
@@ -40,7 +39,7 @@ class Memtable extends Component {
                 <div className={this.size === 0 ? "" : "memtable"}>
                     {baseLevelNodes.map((node, index) => (
                         <div key={index} className="memtable-item">
-                            {node.key} {node.value}
+                            {node.key}: {node.value}
                         </div>
                     ))}
                 </div>
