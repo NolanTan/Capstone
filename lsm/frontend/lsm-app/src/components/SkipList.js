@@ -63,6 +63,29 @@ SkipList.prototype.search = function(key) {
     return null; // Node not found
 }
 
+SkipList.prototype.update = function(key, newValue) {
+    let node = this.head;
+    let found = false;
+
+    // Locate the node with the given key
+    while (node && !found) {
+        if (!node.right || parseInt(node.right.key) > parseInt(key)) {
+            node = node.down;
+        } else if (parseInt(node.right.key) === parseInt(key)) {
+            node = node.right;
+            while(node) {
+                node.value = newValue; // Update the value
+                node = node.down; // Move down
+            }
+            found = true;
+        } else {
+            node = node.right;
+        }
+    }
+
+    return found; // Return true if the key was found and updated, false otherwise
+}
+
 // Returns all nodes to be displayed on frontend
 SkipList.prototype.getBaseLevel = function() {
     const baseLevelNodes = []

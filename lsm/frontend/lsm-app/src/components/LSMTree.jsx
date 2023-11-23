@@ -22,28 +22,31 @@ class LSMTree extends Component {
         }
     }
 
-    // Function to process instruction and do necessary tasks
     processInstruction = (instruction) => {
         const [operation, id, name] = instruction.split(' ');
 
         if(operation === "W") {
-            // Flushing
-            if(this.memtableRef.current.size >= MEMTABLE_SIZE_LIMIT) {
-                let nodes = this.memtableRef.current.memtable.getBaseLevel();
-                this.diskRef.current.addSSTable(nodes); // Create SSTable with memtable data
-                this.memtableRef.current.clear(); // Clear SkipList/Memtable for new data
+            let result = this.memtableRef.current.search(id); // Check if key already exists
+
+            if(result === null) { // ID does not exist -> write normally
+                if(this.memtableRef.current.size >= MEMTABLE_SIZE_LIMIT) { // Flushing
+                    let nodes = this.memtableRef.current.memtable.getBaseLevel();
+                    this.diskRef.current.addSSTable(nodes); // Create SSTable with memtable data
+                    this.memtableRef.current.clear(); // Clear SkipList/Memtable for new data
+                }
+
+                this.memtableRef.current.insert(id, name); // Insertion into Memtable
+                this.setState({ commandResult: `Welcome, ${name}` });
+
+            } else { // ID already exists -> update value 
+                this.memtableRef.current.update(id, name); // Update with the most up-to-date name
+                this.setState({ commandResult: `Updated ${id}: Welcome, ${name}` });
             }
 
-            // Insertion into Memtable
-            this.memtableRef.current.insert(id, name);
-            this.setState({ commandResult: `Welcome, ${name}` });
-
         } else if(operation === "R") {
-            // TODO: "Tombstoning" maybe
             let result = this.memtableRef.current.search(id);
 
-            // If not in Memtable, look in SSTables
-            if(result === null)
+            if(result === null) // If not in Memtable, look in SSTables
                 result = this.diskRef.current.search(id);
 
             if(result === null) // Result not found
@@ -53,7 +56,6 @@ class LSMTree extends Component {
         }
     }
 
-    // Function to perform instruction when the button is pressed
     doInstruction = () => {
         const {instructions} = this.props; // Access instructions from props
         const {currentIndex} = this.state; // Access index from state

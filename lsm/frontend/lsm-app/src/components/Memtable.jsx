@@ -20,7 +20,12 @@ class Memtable extends Component {
         return this.memtable.search(id);
     }
 
-    // Clear memtable
+    // Update an existing ID in the Memtable
+    update(id, newValue) {
+        return this.memtable.update(id, newValue);
+    }
+
+    // Clear Memtable
     clear(){
         this.memtable.clear();
         this.size = 0;
