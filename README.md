@@ -12,7 +12,7 @@
     CS 495: Capstone I
     Advisor: Dr. Holliday
     Author: Nolan Flinchum
-    Version: 11/20/2023
+    Version: 12/5/2023
 
 ## Description
     An LSM tree is a data structure with performance characteristics that make it very attractive
@@ -50,7 +50,12 @@
         - Memory and Disk component(s) visualization
         - Intruction processing
         - Flushing
-        - Might have to do "tombstone handling" (https://disc-projects.bu.edu/lethe/)
+        - (https://disc-projects.bu.edu/lethe/)
+
+    Next semester:
+        - Compaction / Layered disk component
+        - Bloom filters
+        - More...
 
 ## Questions?
     If you have any questions about this project, feel free to reach out

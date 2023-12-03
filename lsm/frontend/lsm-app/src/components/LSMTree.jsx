@@ -3,9 +3,20 @@ import Memtable from './Memtable';
 import Disk from './Disk';
 import './LSMTree.css';
 
+/** Max size of items in the memtable. */
 const MEMTABLE_SIZE_LIMIT = 10;
 
+/**
+ * Class representing the LSM-tree component.
+ * 
+ * @author Nolan Flinchum
+ * @version 12/5/2023
+ */
 class LSMTree extends Component {
+    /**
+     * Creates an instance of an LSM-tree
+     * @param {object} props - The props object
+     */
     constructor(props) {
         super(props);
         this.state = {currentIndex: props.currIndex, commandResult: "Awaiting instructions"};
@@ -13,7 +24,10 @@ class LSMTree extends Component {
         this.diskRef = React.createRef(); // Reference of the disk
     }
 
-    // If the LSM-Tree component updates, reset index and clear memtable
+    /**
+     * React lifecycle method. Resets index and clears everything if LSM-tree component updates.
+     * @param {object} prevProps - The previous props of the component.
+     */   
     componentDidUpdate(prevProps) {
         if(prevProps.instructions !== this.props.instructions){
             this.setState({ currentIndex: 0 , commandResult: "Awaiting instructions"});
@@ -22,6 +36,10 @@ class LSMTree extends Component {
         }
     }
 
+    /**
+     * Processes an instruction and performs the necessary operations.
+     * @param {string} instruction - The instruction to be processed.
+     */
     processInstruction = (instruction) => {
         const [operation, id, name] = instruction.split(' ');
 
@@ -56,6 +74,9 @@ class LSMTree extends Component {
         }
     }
 
+    /**
+     * Performs the next instruction from the list.
+     */
     doInstruction = () => {
         const {instructions} = this.props; // Access instructions from props
         const {currentIndex} = this.state; // Access index from state
@@ -69,6 +90,10 @@ class LSMTree extends Component {
         }
     }
 
+    /**
+     * Renders the LSMTree component.
+     * @returns {JSX.Element} - JSX for rendering the LSMTree component.
+     */
     render() {
         return (
             <div className="lsm">

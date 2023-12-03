@@ -5,6 +5,11 @@ import SaveForm from './components/SaveForm'
 import LSMTree from './components/LSMTree'
 import './App.css'
 
+/**
+ * Main application component rendering the entire application.
+ * Manages script data, UI popups, fetching data, and script instructions.
+ * @returns {JSX.Element} The JSX representing the application layout.
+ */
 function App() {
   // UseState variables for managing script data and UI popups
   const[scriptsArray, setScriptsArray] = useState([]);
@@ -14,7 +19,9 @@ function App() {
   const[instructions, setInstructions] = useState([]);
   const[currIndex, setCurrIndex] = useState(0);
 
-  // Function that fetches data from backend (called at start and when loading scripts)
+  /**
+   * Fetches data from the backend API endpoint. Called at start and when loading scripts.
+   */  
   const fetchData = async () => {
     try {
       const response = await fetch('http://localhost:3001');
@@ -25,10 +32,13 @@ function App() {
     }
   };
 
-  // Function to create an array of instructions out of the script's text
+  /**
+   * Converts script text into an array of instructions.
+   * @param {string} text - The script text to convert.
+   * @returns {string[]} An array of script instructions.
+   */
   const textToArray = (text) => {
-    if(text) 
-      return text.split(',').map(value => value.trim());
+    if(text) return text.split(',').map(value => value.trim());
     return [];
   }
 

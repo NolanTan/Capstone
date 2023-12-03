@@ -1,3 +1,11 @@
+/**
+ * This backend uses Express.js (web application framework for Node.js) to define routes for
+ * handling the sending and retrieval of data to the MongoDB database.
+ * 
+ * @author Nolan Flinchum
+ * @version 12/5/2023
+ */
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const express = require("express");
 const cors = require('cors');
@@ -17,7 +25,11 @@ const app = express(); // Instantiate Express application
 app.use(cors()); // Middleware - CORS
 app.use(express.json()); // Middleware - parse JSON data from incoming requests
 
-// Express route to get data
+/**
+ * GET endpoint to retrieve data from MongoDB.
+ * @param {Request} req - The request object.
+ * @param {Response} res - The response object.
+ */
 app.get("/", async (req, res) => {
   try {
     const collection = client.db('lsm-tree-schedules').collection('scripts');
@@ -29,7 +41,11 @@ app.get("/", async (req, res) => {
   }
 });
 
-// Express route to save data
+/**
+ * POST endpoint to save data to MongoDB.
+ * @param {Request} req - The request object containing data.
+ * @param {Response} res - The response object.
+ */
 app.post("/saveData", async (req, res) => {
   const {value1, value2} = req.body;
 
@@ -46,7 +62,9 @@ app.post("/saveData", async (req, res) => {
   }
 })
 
-// Start Express server and listen on specified port
+/**
+ * Start Express server and listen on specified port.
+ */
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

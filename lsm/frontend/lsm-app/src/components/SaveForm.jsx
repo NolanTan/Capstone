@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+/**
+ * Functional component representing a form for saving data.
+ * @returns {JSX.Element} JSX for rendering the SaveForm component.
+ */
 function SaveForm() {
     // UseState variables for form inputs and its response message
     const [value1, setValue1] = useState('');
@@ -7,27 +11,39 @@ function SaveForm() {
     const [response, setResponse] = useState('');
     const [instructionsError, setInstructionsError] = useState(true);
 
-    // Handles the event of value1 input changing
+    /**
+     * Handles the event of value1 input changing.
+     * @param {Event} e - The event object.
+     */
     const handleValue1Change = (e) => {
         setValue1(e.target.value);
         setResponse('');
     }
 
-    // Handles the event of value2 input changing
+    /**
+     * Handles the event of value2 input changing. Checks the format of instructions.
+     * @param {Event} e - The event object.
+     */
     const handleValue2Change = (e) => {
         setValue2(e.target.value);
         checkInstructionsFormat(e.target.value);
         setResponse('');
     }
 
-    // Check the format of instructions using RegEx
+    /**
+     * Checks the format of instructions using RegEx.
+     * @param {string} input - The input value to check.
+     */
     const checkInstructionsFormat = (input) => {
         const validFormat = /^(W \d+ [A-Za-z]+|R \d+)(, (W \d+ [A-Za-z]+|R \d+))*$/;
         if(validFormat.test(input)) setInstructionsError(false);
         else setInstructionsError(true);
     }
 
-    // Event handler for form submission
+    /**
+     * Event handler for form submission.
+     * @param {Event} e - The event object.
+     */    
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevents default behavior for submit handling
         

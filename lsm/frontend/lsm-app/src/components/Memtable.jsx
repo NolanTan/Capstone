@@ -2,35 +2,63 @@ import { Component } from 'react';
 import SkipList from './SkipList';
 import './LSMTree.css';
 
+/**
+ * Class representing the Memtable component.
+ * 
+ * @author Nolan Flinchum
+ * @version 12/5/2023
+ */
 class Memtable extends Component { 
+    /**
+     * Constructor to set up the memtable's data structure and size.
+     */
     constructor() {
         super();
         this.memtable = new SkipList(); 
         this.size = 0;
     }
 
-    // Insert data into Memtable/SkipList
+    /**
+     * Inserts data into the Memtable/SkipList.
+     * @param {*} id - The ID to be inserted.
+     * @param {*} name - The name associated with the ID.
+     */    
     insert(id, name) {  
         this.memtable.insert(id, name);
         this.size++;
     }
 
-    // Search for ID in Memtable/SkipList
+    /**
+     * Searches for an ID in the Memtable/SkipList.
+     * @param {*} id - The ID to search for.
+     * @returns {*} The value associated with the ID, or null if not found.
+     */   
     search(id) {
         return this.memtable.search(id);
     }
 
-    // Update an existing ID in the Memtable
+    /**
+     * Updates an existing ID in the Memtable.
+     * @param {*} id - The ID to update.
+     * @param {*} newValue - The new value to assign to the ID.
+     * @returns {boolean} - True if the ID was found and updated, false otherwise.
+     */
     update(id, newValue) {
         return this.memtable.update(id, newValue);
     }
 
-    // Clear Memtable
+    /**
+     * Clears the Memtable.
+     */   
     clear(){
         this.memtable.clear();
         this.size = 0;
     }
 
+    /**
+     * Renders the Memtable component.
+     * @returns {JSX.Element} - JSX for rendering the Memtable component.
+     */
     render() {
         // Displayed in memtable visualization
         const baseLevelNodes = this.memtable.getBaseLevel();

@@ -1,4 +1,19 @@
+/**
+ * This file contains the classes and logic to implement a skip list.
+ * 
+ * @author Nolan Flinchum
+ * @version 12/5/2023
+ */
+
+/**
+ * Class representing a node in the SkipList.
+ */
 class ListNode {
+    /**
+     * Create a ListNode.
+     * @param {*} key - The key of the node.
+     * @param {*} value - The value associated with the key.
+     */
     constructor(key, value) {
         this.key = key;
         this.value = value;
@@ -7,12 +22,23 @@ class ListNode {
     }
 }
 
+/**
+ * Class representing a SkipList data structure.
+ */
 class SkipList {
+    /**
+     * Create a SkipList.
+     */
     constructor() {
         this.head = new ListNode(null, null);
     }
 }
 
+/**
+ * Inserts a key-value pair into the SkipList.
+ * @param {*} key - The key to be inserted.
+ * @param {*} value - The value associated with the key.
+ */
 SkipList.prototype.insert = function(key, value) {
     const nodes = [];
     let node = this.head;
@@ -50,6 +76,11 @@ SkipList.prototype.insert = function(key, value) {
     }
 }
 
+/**
+ * Searches for a key in the SkipList and returns its value if found.
+ * @param {*} key - The key to search for.
+ * @returns {*} The value associated with the key, or null if not found.
+ */
 SkipList.prototype.search = function(key) {
     let node = this.head;
 
@@ -63,6 +94,12 @@ SkipList.prototype.search = function(key) {
     return null; // Node not found
 }
 
+/**
+ * Updates the value associated with a given key in the SkipList.
+ * @param {*} key - The key to update.
+ * @param {*} newValue - The new value to assign to the key.
+ * @returns {boolean} - True if the key was found and updated, false otherwise.
+ */
 SkipList.prototype.update = function(key, newValue) {
     let node = this.head;
     let found = false;
@@ -83,10 +120,13 @@ SkipList.prototype.update = function(key, newValue) {
         }
     }
 
-    return found; // Return true if the key was found and updated, false otherwise
+    return found; 
 }
 
-// Returns all nodes to be displayed on frontend
+/**
+ * Returns all nodes at the base level of the SkipList for display purposes.
+ * @returns {Array} - The array of nodes at the base level.
+ */
 SkipList.prototype.getBaseLevel = function() {
     const baseLevelNodes = []
     let node = this.head;
@@ -100,7 +140,10 @@ SkipList.prototype.getBaseLevel = function() {
     return baseLevelNodes;
 }
 
-// Function to return all levels of the SkipList (testing/bug fixing)
+/**
+ * Returns all levels of the SkipList (for testing or bug fixing).
+ * @returns {Array<Array<ListNode>>} - An array containing arrays of nodes at each level.
+ */
 SkipList.prototype.getAllLevels = function() {
     const allLevels = [];
     let currentLevel = this.head;
@@ -121,6 +164,9 @@ SkipList.prototype.getAllLevels = function() {
     return allLevels;
 }
 
+/**
+ * Clears the SkipList, removing all elements.
+ */
 SkipList.prototype.clear = function() {
     this.head = new ListNode(null, null);
 }
