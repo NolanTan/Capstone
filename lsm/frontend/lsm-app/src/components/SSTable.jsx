@@ -18,8 +18,8 @@ class SSTable extends Component {
 
     /**
      * Inserts a key-value pair into the SSTable and sorts it by key.
-     * @param {*} key - The key to insert (ID).
-     * @param {*} value - The value associated with the key (name).
+     * @param {string} key - The key to insert (ID).
+     * @param {string} value - The value associated with the key (name).
      */
     insert(key, value) {
         this.data.push({key, value});
@@ -28,8 +28,8 @@ class SSTable extends Component {
 
     /**
      * Retrieves a value from the SSTable (using binary search) based on the given key.
-     * @param {*} key - The key to search for.
-     * @returns {*} The value associated with the key, or null if not found.
+     * @param {string} key - The key to search for.
+     * @returns {string|null} The value associated with the key, or null if not found.
      */
     get(key){
         let start = 0, end = this.data.length - 1;

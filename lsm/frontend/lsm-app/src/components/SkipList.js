@@ -11,8 +11,8 @@
 class ListNode {
     /**
      * Create a ListNode.
-     * @param {*} key - The key of the node.
-     * @param {*} value - The value associated with the key.
+     * @param {string} key - The key of the node.
+     * @param {string} value - The value associated with the key.
      */
     constructor(key, value) {
         this.key = key;
@@ -36,8 +36,8 @@ class SkipList {
 
 /**
  * Inserts a key-value pair into the SkipList.
- * @param {*} key - The key to be inserted.
- * @param {*} value - The value associated with the key.
+ * @param {string} key - The key to be inserted.
+ * @param {string} value - The value associated with the key.
  */
 SkipList.prototype.insert = function(key, value) {
     const nodes = [];
@@ -78,8 +78,8 @@ SkipList.prototype.insert = function(key, value) {
 
 /**
  * Searches for a key in the SkipList and returns its value if found.
- * @param {*} key - The key to search for.
- * @returns {*} The value associated with the key, or null if not found.
+ * @param {string} key - The key to search for.
+ * @returns {string|null} The value associated with the key, or null if not found.
  */
 SkipList.prototype.search = function(key) {
     let node = this.head;
@@ -96,8 +96,8 @@ SkipList.prototype.search = function(key) {
 
 /**
  * Updates the value associated with a given key in the SkipList.
- * @param {*} key - The key to update.
- * @param {*} newValue - The new value to assign to the key.
+ * @param {string} key - The key to update.
+ * @param {string} newValue - The new value to assign to the key.
  * @returns {boolean} - True if the key was found and updated, false otherwise.
  */
 SkipList.prototype.update = function(key, newValue) {

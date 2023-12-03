@@ -20,8 +20,8 @@ class Memtable extends Component {
 
     /**
      * Inserts data into the Memtable/SkipList.
-     * @param {*} id - The ID to be inserted.
-     * @param {*} name - The name associated with the ID.
+     * @param {string} id - The ID to be inserted.
+     * @param {string} name - The name associated with the ID.
      */    
     insert(id, name) {  
         this.memtable.insert(id, name);
@@ -30,8 +30,8 @@ class Memtable extends Component {
 
     /**
      * Searches for an ID in the Memtable/SkipList.
-     * @param {*} id - The ID to search for.
-     * @returns {*} The value associated with the ID, or null if not found.
+     * @param {string} id - The ID to search for.
+     * @returns {string|null} The value associated with the ID, or null if not found.
      */   
     search(id) {
         return this.memtable.search(id);
@@ -39,8 +39,8 @@ class Memtable extends Component {
 
     /**
      * Updates an existing ID in the Memtable.
-     * @param {*} id - The ID to update.
-     * @param {*} newValue - The new value to assign to the ID.
+     * @param {string} id - The ID to update.
+     * @param {string} newValue - The new value to assign to the ID.
      * @returns {boolean} - True if the ID was found and updated, false otherwise.
      */
     update(id, newValue) {

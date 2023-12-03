@@ -32,8 +32,8 @@ class Disk extends Component {
 
     /**
      * Searches for an ID across the SSTables on the disk.
-     * @param {*} id - The ID to search for.
-     * @returns {*} The value associated with the ID if found, otherwise null.
+     * @param {string} id - The ID to search for.
+     * @returns {string|null} The value associated with the ID if found, otherwise null.
      */
     search(id) {
         let result = null;
