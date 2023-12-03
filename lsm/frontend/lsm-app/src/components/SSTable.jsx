@@ -15,8 +15,17 @@ class SSTable extends Component {
 
     // Get a name from an ID - return null if ID isn't in SSTable
     get(key){
-        const entry = this.data.find(item => item.key === key);
-        return entry ? entry.value : null;
+        let start = 0, end = this.data.length - 1;
+
+        while(start <= end) {
+            const mid = Math.floor((start + end) / 2);
+
+            if(parseInt(this.data[mid].key) === parseInt(key)) return this.data[mid].value;
+            else if(parseInt(this.data[mid].key) < parseInt(key)) start = mid + 1;
+            else end = mid - 1;
+        }
+
+        return null;
     }
 
     render() {
