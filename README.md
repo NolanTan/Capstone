@@ -12,7 +12,7 @@
     CS 495: Capstone I
     Advisor: Dr. Holliday
     Author: Nolan Flinchum
-    Version: 12/5/2023
+    Version: 12/16/2023
 
 ## Description
     An LSM tree is a data structure with performance characteristics that make it very attractive
@@ -44,15 +44,7 @@
             `npm run dev`
 
 ## More Info
-    This project is currently in development. Currently working on:
-        - Loading and saving features
-        - CSS layout
-        - Memory and Disk component(s) visualization
-        - Intruction processing
-        - Flushing
-        - (https://disc-projects.bu.edu/lethe/)
-
-    Next semester:
+    This project is currently in development. Next semester, I plan to work on:
         - Compaction / Layered disk component
         - Bloom filters
         - More...
