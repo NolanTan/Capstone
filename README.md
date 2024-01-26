@@ -44,10 +44,7 @@
             `npm run dev`
 
 ## More Info
-    This project is currently in development. Next semester, I plan to work on:
-        - Compaction / Layered disk component
-        - Bloom filters
-        - More...
+    This project is currently in development. 
 
 ## Questions?
     If you have any questions about this project, feel free to reach out
