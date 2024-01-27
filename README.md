@@ -33,7 +33,7 @@
         `npm install` 
     to install dependencies needed to run the backend.
     
-    In the lsm/frontend/lsm-app/ directory, run 
+    In the lsm/frontend/lsm-app/ directory, run the command
         `npm install` 
     to install dependencies needed to run the frontend.
 
