@@ -63,6 +63,27 @@ app.post("/saveData", async (req, res) => {
 })
 
 /**
+ * Delete endpoint to delete data from MongoDB.
+ * 
+ * @param {Request} req - The request object containing data.
+ * @param {Response} res - The response object.
+ */
+app.delete("/deleteData/:name", async (req, res) => {
+  const scriptName = req.params.name; // Provided name of script
+
+  try {
+    const collection = client.db('lsm-tree-schedules').collection('scripts');
+    await collection.deleteOne({name: scriptName});
+
+    console.log('Data deleted:', scriptName);
+    res.status(200).json({message: 'Data deleted!'});
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({message: 'Error deleting data'});
+  }
+})
+
+/**
  * Start Express server and listen on specified port.
  */
 app.listen(PORT, () => {

@@ -8,9 +8,14 @@ import './Script.css';
  * @returns {JSX.Element} - JSX for rendering the script component.
  */
 function Script(props) {
+    const handleDelete = () => {
+        props.onDelete(props.name);
+    }
+
     return (
-        <div className="script-container">
+        <div>
             <button className="script-button"> 
+                <button className="delete-button" onClick={handleDelete}>x</button>
                 <div className="text-file-icon">{props.text}</div>
                 <div className="script-name">{props.name}</div>
             </button>
