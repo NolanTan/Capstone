@@ -43,11 +43,16 @@ class SSTable extends Component {
         return null;
     }
 
+    getData() {
+        return this.data;
+    }
+
     /**
      * Renders the SSTable component. Displays the SSTable data passed as props.
      * @returns {JSX.Element} - JSX for rendering the SSTable.
      */
     render() {
+        console.log("SSTABLE RENDERED");
         return (
             <div className="sstable-container">
                 <div className="sstable"> 

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import SSTable from './SSTable';
 import './LSMTree.css';
+import Level from './Level';
 
 /**
  * Class representing the Disk component.
@@ -14,42 +15,30 @@ class Disk extends Component {
      */
     constructor() {
         super();
-        this.sstables = [];
+        this.levels = [new Level(), new Level(), new Level()];
     }
 
-    /**
-     * Adds an SSTable with provided nodes to the disk.
-     * @param {Array} nodes - Nodes to be added to the SSTable.
-     */
     addSSTable(nodes) {
-        const sstable = new SSTable();
-
-        for(let i = 0; i < nodes.length; i++) 
-            sstable.insert(nodes[i].key, nodes[i].value);
-
-        this.sstables.unshift(sstable);
-    }
-
-    /**
-     * Searches for an ID across the SSTables on the disk.
-     * @param {string} id - The ID to search for.
-     * @returns {string|null} The value associated with the ID if found, otherwise null.
-     */
-    search(id) {
-        let result = null;
-        for(let i = 0; i < this.sstables.length; i++) {
-            result = this.sstables[i].get(id);
-            if(result != null) return result;
+        // If level 0 is full, activate compaction
+        if(this.levels[0].sstableCount == 4) {
+            this.levels[1].addSSTable(this.levels[0].compact());
         }
 
-        return result; // Return null if nothing was found
+        // If level 1 became full from that, activate compaction
+        if(this.levels[1].sstableCount > 4) {
+            this.levels[2].addSSTable(this.levels[1].compact());
+        }
+
+        this.levels[0].addSSTable(nodes);
+
+        console.log("DISK POV");
+        console.log(this.levels[0]);
+        console.log(this.levels[1]);
+        console.log(this.levels[2]);
     }
 
-    /**
-     * Clears all SSTables from the disk.
-     */
     clear() {
-        this.sstables = [];
+        this.levels = [new Level(), new Level(), new Level()];
     }
 
     /**
@@ -61,8 +50,8 @@ class Disk extends Component {
             <div className="disk-container">
                 <h3>Disk:</h3>
                 <div className="disk">
-                    {this.sstables.map((sstable, index) => (
-                        <SSTable key={index} data={sstable.data} />
+                    {this.levels.map((level, index) => (
+                        <Level key={index} levelNum={index} />
                     ))}
                 </div>
             </div>

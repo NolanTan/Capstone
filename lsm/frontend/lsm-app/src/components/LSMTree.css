@@ -68,6 +68,11 @@
     border-radius: 100px; 
 }
 
+/* LEVEL SECTION */
+.level {
+    border: solid darkgray 2px;
+}
+
 /* SSTABLE SECTION */
 
 .sstable-container {
