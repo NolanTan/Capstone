@@ -20,12 +20,12 @@ class Disk extends Component {
 
     addSSTable(nodes) {
         // If level 0 is full, activate compaction
-        if(this.levels[0].sstableCount == 4) {
+        if(this.levels[0].sstableCount == 2) {
             this.levels[1].addSSTable(this.levels[0].compact());
         }
 
         // If level 1 became full from that, activate compaction
-        if(this.levels[1].sstableCount > 4) {
+        if(this.levels[1].sstableCount > 2) {
             this.levels[2].addSSTable(this.levels[1].compact());
         }
 
@@ -51,7 +51,14 @@ class Disk extends Component {
                 <h3>Disk:</h3>
                 <div className="disk">
                     {this.levels.map((level, index) => (
-                        <Level key={index} levelNum={index} />
+                        <div className="" key={index}>
+                            <p>Level {index}</p>
+                            <div className="level">
+                                {level.sstables.map((sstable, sIndex) => (
+                                    <SSTable key={sIndex} data={sstable.data} />
+                                ))}
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>

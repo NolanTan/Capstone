@@ -52,7 +52,6 @@ class SSTable extends Component {
      * @returns {JSX.Element} - JSX for rendering the SSTable.
      */
     render() {
-        console.log("SSTABLE RENDERED");
         return (
             <div className="sstable-container">
                 <div className="sstable"> 

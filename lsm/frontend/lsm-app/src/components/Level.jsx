@@ -43,19 +43,19 @@ class Level extends Component {
         return [...new Set(combinedData)];
     }
 
-    render() {
-        const { levelNum } = this.props; 
-        console.log(`LEVEL ${levelNum} RENDERED`);
-        console.log(this.sstables);
-        return (
-            <div className="level"> 
-                <p>Level {levelNum}</p>
-                {this.sstables.map((sstable, index) => (
-                    <SSTable key={index} data={sstable.data} />
-                ))}
-            </div>
-        )
-    }
+    // render() {
+    //     const { levelNum } = this.props; 
+    //     console.log(`LEVEL ${levelNum} RENDERED`);
+    //     console.log(this.sstables);
+    //     return (
+    //         <div className="level"> 
+    //             <p>Level {levelNum}</p>
+    //             {this.sstables.map((sstable, index) => (
+    //                 <SSTable key={index} data={sstable.data} />
+    //             ))}
+    //         </div>
+    //     )
+    // }
 }
 
 export default Level;

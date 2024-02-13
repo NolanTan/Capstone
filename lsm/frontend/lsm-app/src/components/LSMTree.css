@@ -42,7 +42,7 @@
 .disk-container {
     background-color: rgb(148, 84, 0);
     height: 600px;
-    width: 600px;
+    width: 650px;
     padding: 40px;
     border-radius: 60px;
     border: 2px solid white;
@@ -69,18 +69,34 @@
 }
 
 /* LEVEL SECTION */
-.level {
+
+.level{
+    height: 470px;
     border: solid darkgray 2px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.level::-webkit-scrollbar {
+    background-color: darkslategray;
+    border-radius: 100px; 
+    width: 5px;
+}
+
+.level::-webkit-scrollbar-thumb {
+    background-color: gray; 
+    border-radius: 100px; 
 }
 
 /* SSTABLE SECTION */
 
 .sstable-container {
     border-top: 1px solid white; 
-    border-right: 1px solid white;     
-    border-left: 1px solid white; 
     width: 150px;
-    max-height: 250px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .sstable {
@@ -89,5 +105,8 @@
 }
 
 .sstable-item {
+    font-size: small;
     border-bottom: 1px solid white; 
+    border-right: 1px solid white;     
+    border-left: 1px solid white; 
 }
