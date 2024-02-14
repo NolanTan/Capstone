@@ -40,10 +40,11 @@ class Level extends Component {
         let newerData = this.sstables.pop().getData();
         this.sstableCount -= 2;
 
+        // Only keep old data if key is not present in new data - obsolete data removed
         let newerDataKeys = new Set(newerData.map(obj => obj.key));
         let dataToKeep = olderData.filter(obj => !newerDataKeys.has(obj.key));
 
-        return dataToKeep.concat(newerData);
+        return newerData.concat(dataToKeep);
     }
 
     // render() {
