@@ -19,8 +19,6 @@ class Level extends Component {
             sstable.insert(nodes[i].key, nodes[i].value);
         this.sstables.unshift(sstable);
         this.sstableCount++;
-        console.log("LOOK")
-        console.log(this.sstables);
     }
 
     /**

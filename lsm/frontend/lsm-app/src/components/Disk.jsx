@@ -20,21 +20,23 @@ class Disk extends Component {
 
     addSSTable(nodes) {
         // If level 0 is full, activate compaction
-        if(this.levels[0].sstableCount == 2) {
+        if(this.levels[0].sstableCount == 2)
             this.levels[1].addSSTable(this.levels[0].compact());
-        }
 
         // If level 1 became full from that, activate compaction
-        if(this.levels[1].sstableCount > 2) {
+        if(this.levels[1].sstableCount > 2)
             this.levels[2].addSSTable(this.levels[1].compact());
-        }
 
         this.levels[0].addSSTable(nodes);
+    }
 
-        console.log("DISK POV");
-        console.log(this.levels[0]);
-        console.log(this.levels[1]);
-        console.log(this.levels[2]);
+    search(id) {
+        let result = null;
+        for(let i = 0; i < this.levels.length; i++) {
+            result = this.levels[i].search(id);
+            if(result != null) return result;
+        }
+        return result; // Return null if nothing was found
     }
 
     clear() {
