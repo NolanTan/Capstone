@@ -38,9 +38,14 @@ class Level extends Component {
     }
 
     compact() { 
-        let combinedData = this.sstables.pop().getData().concat(this.sstables.pop().getData());
+        let olderData = this.sstables.pop().getData();
+        let newerData = this.sstables.pop().getData();
         this.sstableCount -= 2;
-        return [...new Set(combinedData)];
+
+        let newerDataKeys = new Set(newerData.map(obj => obj.key));
+        let dataToKeep = olderData.filter(obj => !newerDataKeys.has(obj.key));
+
+        return dataToKeep.concat(newerData);
     }
 
     // render() {
