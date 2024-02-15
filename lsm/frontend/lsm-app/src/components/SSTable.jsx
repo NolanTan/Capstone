@@ -39,12 +39,7 @@ class SSTable extends Component {
             else if(parseInt(this.data[mid].key) < parseInt(key)) start = mid + 1;
             else end = mid - 1;
         }
-
         return null;
-    }
-
-    getData() {
-        return this.data;
     }
 
     /**

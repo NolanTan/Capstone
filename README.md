@@ -1,7 +1,7 @@
 <h1 align="center">
     <br>
         <a href="https://github.com/NolanTan/Capstone-1">
-            <img src="lsm/frontend/lsm-app/lsm-logo.png" alt="LSM" width="400">
+            <img src="lsm/frontend/lsm-app/lsm-logo.png" alt="LSM" width="350">
         </a>
     <br>
         LSM-tree Education Application
@@ -9,10 +9,10 @@
 </h1>
 
 ## Info
-    CS 495: Capstone II
+    CS 496: Capstone II
     Advisor: Dr. Holliday
     Author: Nolan Flinchum
-    Version: 1/27/2024
+    Version: 2/14/2024
 
 ## Description
     An LSM-tree is a data structure with performance characteristics that make it very attractive

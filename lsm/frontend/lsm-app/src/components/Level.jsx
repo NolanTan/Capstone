@@ -36,8 +36,8 @@ class Level extends Component {
     }
 
     compact() { 
-        let olderData = this.sstables.pop().getData();
-        let newerData = this.sstables.pop().getData();
+        let olderData = this.sstables.pop().data;
+        let newerData = this.sstables.pop().data;
         this.sstableCount -= 2;
 
         // Only keep old data if key is not present in new data - obsolete data removed

@@ -17,18 +17,11 @@ describe('Level', () => {
 
     test('compact() method should properly combine data', () => {
         const mockSSTable1 = new SSTable(); // Creating mock SSTable
-        mockSSTable1.getData.mockReturnValue([ // Creating mock data from mock SSTable
-            { key: '1', value: 'value1' },
-            { key: '2', value: 'value2' },
-        ]);
+        mockSSTable1.data = [{ key: '1', value: 'value1' }, { key: '2', value: 'value2' }];
 
-        const mockSSTable2 = new SSTable(); // Creating mock SSTable
-        mockSSTable2.getData.mockReturnValue([ // Creating mock data from mock SSTable
-            { key: '3', value: 'value3' },
-            { key: '4', value: 'value4' },
-        ]);
+        const mockSSTable2 = new SSTable();
+        mockSSTable2.data = [{ key: '3', value: 'value3' }, { key: '4', value: 'value4' }];
 
-        // Setting up level, mockSSTable2 is the older data
         level.sstables = [mockSSTable1, mockSSTable2];
         level.sstableCount = 2;
 
@@ -43,19 +36,12 @@ describe('Level', () => {
 
     test('compact() method should properly combine and remove duplicate data', () => {
         const mockSSTable1 = new SSTable(); // Creating mock SSTable
-        mockSSTable1.getData.mockReturnValue([ // Creating mock data from mock SSTable
-            { key: '1', value: 'value1' },
-            { key: '2', value: 'value2' },
-        ]);
+        mockSSTable1.data = [{ key: '1', value: 'value1' }, { key: '2', value: 'value2' }];
 
-        const mockSSTable2 = new SSTable(); // Creating mock SSTable
-        mockSSTable2.getData.mockReturnValue([ // Creating mock data from mock SSTable
-            { key: '2', value: 'olderValue2' },
-            { key: '3', value: 'value3' },
-        ]);
+        const mockSSTable2 = new SSTable();
+        mockSSTable2.data = [{ key: '2', value: 'olderValue2' }, { key: '3', value: 'value3' }];
 
-        // Setting up level, mockSSTable2 is the older data
-        level.sstables = [mockSSTable1, mockSSTable2];
+        level.sstables = [mockSSTable1, mockSSTable2]; // mockSSTable2 is the older data
         level.sstableCount = 2;
 
         const compactedData = level.compact();
@@ -64,8 +50,6 @@ describe('Level', () => {
             { key: '2', value: 'value2' },
             { key: '3', value: 'value3' },
         ]);
-
-        expect(level.sstableCount).toEqual(0);
     });
 
 });

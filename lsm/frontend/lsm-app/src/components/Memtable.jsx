@@ -63,9 +63,6 @@ class Memtable extends Component {
         // Displayed in memtable visualization
         const baseLevelNodes = this.memtable.getBaseLevel();
 
-        // Printing all levels for presentation maybe?
-        //console.log(this.memtable.getAllLevels());
-
         return (
             <div className="memtable-container">
                 <h3>Memtable:</h3>

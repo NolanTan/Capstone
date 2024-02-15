@@ -3,7 +3,7 @@
  * handling the sending and retrieval of data to the MongoDB database.
  * 
  * @author Nolan Flinchum
- * @version 12/5/2023
+ * @version 2/14/2024
  */
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -63,13 +63,13 @@ app.post("/saveData", async (req, res) => {
 })
 
 /**
- * Delete endpoint to delete data from MongoDB.
+ * DELETE endpoint to delete data from MongoDB.
  * 
  * @param {Request} req - The request object containing data.
  * @param {Response} res - The response object.
  */
 app.delete("/deleteData/:name", async (req, res) => {
-  const scriptName = req.params.name; // Provided name of script
+  const scriptName = req.params.name; // Extract script name from URL parameter
 
   try {
     const collection = client.db('lsm-tree-schedules').collection('scripts');

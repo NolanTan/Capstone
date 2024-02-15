@@ -12,7 +12,7 @@ describe('Math Operations', () => {
 
 describe('String and Array Operations', () => {
   test('Checking if a string contains a specific word', () => {
-    const sentence = 'Hello, pizza is awesome!';
+    const sentence = 'pizza is cool!';
     expect(sentence).toContain('pizza');
   });
 
