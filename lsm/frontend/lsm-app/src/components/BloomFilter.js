@@ -106,3 +106,5 @@ class BloomFilter {
     }
 
 }
+
+export default BloomFilter;

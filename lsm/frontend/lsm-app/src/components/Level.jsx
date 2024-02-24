@@ -47,19 +47,9 @@ class Level extends Component {
         return newerData.concat(dataToKeep);
     }
 
-    // render() {
-    //     const { levelNum } = this.props; 
-    //     console.log(`LEVEL ${levelNum} RENDERED`);
-    //     console.log(this.sstables);
-    //     return (
-    //         <div className="level"> 
-    //             <p>Level {levelNum}</p>
-    //             {this.sstables.map((sstable, index) => (
-    //                 <SSTable key={index} data={sstable.data} />
-    //             ))}
-    //         </div>
-    //     )
-    // }
+    clearBloomFilterStatus() {
+        for(let i = 0; i < this.sstables.length; i++) this.sstables[i].bloomFilterStatus = "";
+    }
 }
 
 export default Level;

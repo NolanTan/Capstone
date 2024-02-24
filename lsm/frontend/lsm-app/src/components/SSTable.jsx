@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './LSMTree.css';
+import BloomFilter from './BloomFilter';
 
 /**
  * A React component representing an SSTable.
@@ -14,6 +15,8 @@ class SSTable extends Component {
     constructor() {
         super();
         this.data = [];
+        this.bloomFilter = new BloomFilter(1000);
+        this.bloomFilterStatus = "";
     }
 
     /**
@@ -24,6 +27,7 @@ class SSTable extends Component {
     insert(key, value) {
         this.data.push({key, value});
         this.data.sort((a,b) => a.key - b.key);
+        this.bloomFilter.insert(key);
     }
 
     /**
@@ -32,13 +36,19 @@ class SSTable extends Component {
      * @returns {string|null} The value associated with the key, or null if not found.
      */
     get(key){
-        let start = 0, end = this.data.length - 1;
-        while(start <= end) {
-            const mid = Math.floor((start + end) / 2);
-            if(parseInt(this.data[mid].key) === parseInt(key)) return this.data[mid].value;
-            else if(parseInt(this.data[mid].key) < parseInt(key)) start = mid + 1;
-            else end = mid - 1;
+        if(!this.bloomFilter.lookup(key)) {
+            this.bloomFilterStatus = "0" ; // Key definitely not present
+        } else {
+            this.bloomFilterStatus = "1"; // Key might be present, so do binary search
+            let start = 0, end = this.data.length - 1;
+            while(start <= end) {
+                const mid = Math.floor((start + end) / 2);
+                if(parseInt(this.data[mid].key) === parseInt(key)) return this.data[mid].value;
+                else if(parseInt(this.data[mid].key) < parseInt(key)) start = mid + 1;
+                else end = mid - 1;
+            }
         }
+        
         return null;
     }
 
@@ -50,11 +60,17 @@ class SSTable extends Component {
         return (
             <div className="sstable-container">
                 <div className="sstable"> 
+
+                    <div className="sstable-item">
+                        {this.props.bf}
+                    </div>
+
                     {this.props.data.map((item, index) => (
                         <div key={index} className="sstable-item">
                             {item.key}: {item.value}
                         </div>
                     ))}
+
                 </div>
             </div>
         )

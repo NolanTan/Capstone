@@ -80,6 +80,7 @@ class LSMTree extends Component {
     doInstruction = () => {
         const {instructions} = this.props; // Access instructions from props
         const {currentIndex} = this.state; // Access index from state
+        this.diskRef.current.clearBloomFilterStatus();
 
         if(currentIndex < instructions.length) {
             this.processInstruction(instructions[currentIndex]);
@@ -87,6 +88,16 @@ class LSMTree extends Component {
             this.props.setCurrIndex(this.props.currIndex + 1); // Update for App.jsx highlighting
         } else {
             this.setState({ commandResult: "No more instructions" });
+        }
+    }
+
+    /**
+     * Do ten instructions.
+     */
+    doTen = async () => {
+        for (let i = 0; i < 10; i++) {
+            await new Promise(resolve => setTimeout(resolve, 0)); // Wait for 0 seconds
+            this.doInstruction(); // Call the doInstruction method
         }
     }
 
@@ -100,6 +111,7 @@ class LSMTree extends Component {
                 <div className="user">
                     <button onClick={this.doInstruction}>Do Next Instruction</button>
                     <p>{this.state.commandResult}</p>
+                    <button onClick={this.doTen}>Do Ten Instructions</button>
                 </div>
                 <h1>→</h1>
                 <Memtable ref={this.memtableRef} />

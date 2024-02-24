@@ -43,6 +43,10 @@ class Disk extends Component {
         this.levels = [new Level(), new Level(), new Level()];
     }
 
+    clearBloomFilterStatus() {
+        for(let i = 0; i < this.levels.length; i++) this.levels[i].clearBloomFilterStatus();
+    }
+
     /**
      * Renders the Disk component.
      * @returns {JSX.Element} - JSX for rendering the Disk component.
@@ -57,7 +61,11 @@ class Disk extends Component {
                             <p>Level {index}</p>
                             <div className="level">
                                 {level.sstables.map((sstable, sIndex) => (
-                                    <SSTable key={sIndex} data={sstable.data} />
+                                    <SSTable 
+                                        key={sIndex} 
+                                        data={sstable.data}
+                                        bf={sstable.bloomFilterStatus}
+                                    />
                                 ))}
                             </div>
                         </div>
