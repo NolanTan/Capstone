@@ -30,7 +30,9 @@
 
 .delete-button {
     font-family: 'Comic Sans MS', 'Arial Narrow Bold', sans-serif;
+    font-size: small;
     border: none;
+    background: transparent;
     position: absolute;
     top: 0;
     right: 0;

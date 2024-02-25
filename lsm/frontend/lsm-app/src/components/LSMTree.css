@@ -40,7 +40,7 @@
 /* DISK COMPONENT SECTION */
 
 .disk-container {
-    background-color: rgb(148, 84, 0);
+    background-color: rgb(136, 77, 1);
     height: 600px;
     width: 650px;
     padding: 40px;
@@ -68,6 +68,11 @@
     border-radius: 100px; 
 }
 
+/* MEMTABLE AND DISK */
+.found {
+    background-color: rgba(255, 255, 0, 0.361)
+}
+
 /* LEVEL SECTION */
 
 .level{
@@ -93,7 +98,7 @@
 /* SSTABLE SECTION */
 
 .sstable-container {
-    border-top: 1px solid white; 
+    border-bottom: 1px solid white; 
     width: 150px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -106,7 +111,15 @@
 
 .sstable-item {
     font-size: small;
-    border-bottom: 1px solid white; 
+    border-top: 1px solid white; 
     border-right: 1px solid white;     
     border-left: 1px solid white; 
+}
+
+.bf {
+    font-size: small;
+    border: 1px solid white;
+    border-bottom: 0px;
+    border-top-right-radius: 100%; 
+    border-top-left-radius: 100%; 
 }

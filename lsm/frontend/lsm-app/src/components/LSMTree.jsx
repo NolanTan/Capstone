@@ -19,7 +19,11 @@ class LSMTree extends Component {
      */
     constructor(props) {
         super(props);
-        this.state = {currentIndex: props.currIndex, commandResult: "Awaiting instructions"};
+        this.state = {
+            currentIndex: props.currIndex, 
+            commandResult: "Awaiting instructions",
+            foundId: null // State variable to keep track of the ID found during a read
+        };
         this.memtableRef = React.createRef(); // Reference of the memtable
         this.diskRef = React.createRef(); // Reference of the disk
     }
@@ -70,7 +74,7 @@ class LSMTree extends Component {
             if(result === null) // Result not found
                 this.setState({ commandResult: `ID ${id} not found in LSM Tree` });
             else // Result found
-                this.setState({ commandResult: `Read result of ${id}: ${result}` });
+                this.setState({ commandResult: `Read result of ${id}: ${result}`, foundId: id });
         }
     }
 
@@ -80,9 +84,10 @@ class LSMTree extends Component {
     doInstruction = () => {
         const {instructions} = this.props; // Access instructions from props
         const {currentIndex} = this.state; // Access index from state
-        this.diskRef.current.clearBloomFilterStatus();
 
         if(currentIndex < instructions.length) {
+            this.diskRef.current.clearBloomFilterStatus(); // Reset Bloom filter status
+            this.setState({ foundId: null }); // Reset read value highlighting
             this.processInstruction(instructions[currentIndex]);
             this.setState({currentIndex: currentIndex + 1}); // Update for LSM Tree
             this.props.setCurrIndex(this.props.currIndex + 1); // Update for App.jsx highlighting
@@ -114,9 +119,9 @@ class LSMTree extends Component {
                     <button onClick={this.doTen}>Do Ten Instructions</button>
                 </div>
                 <h1>→</h1>
-                <Memtable ref={this.memtableRef} />
+                <Memtable ref={this.memtableRef} foundId={this.state.foundId} />
                 <h1>→</h1>
-                <Disk ref={this.diskRef}/>
+                <Disk ref={this.diskRef} foundId={this.state.foundId} />
             </div>
         )
     }

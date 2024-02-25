@@ -57,20 +57,21 @@ class SSTable extends Component {
      * @returns {JSX.Element} - JSX for rendering the SSTable.
      */
     render() {
-        return (
+        const { foundId } = this.props; // Get foundId from props
+        return (       
             <div className="sstable-container">
+                <div className="bf">
+                    {this.props.bf}
+                </div>
                 <div className="sstable"> 
-
-                    <div className="sstable-item">
-                        {this.props.bf}
-                    </div>
-
                     {this.props.data.map((item, index) => (
-                        <div key={index} className="sstable-item">
+                        <div 
+                            key={index}
+                            className={`sstable-item${foundId === item.key ? " found" : ""}`}
+                        >
                             {item.key}: {item.value}
                         </div>
                     ))}
-
                 </div>
             </div>
         )

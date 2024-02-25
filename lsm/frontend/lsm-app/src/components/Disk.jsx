@@ -65,6 +65,7 @@ class Disk extends Component {
                                         key={sIndex} 
                                         data={sstable.data}
                                         bf={sstable.bloomFilterStatus}
+                                        foundId={this.props.foundId}
                                     />
                                 ))}
                             </div>

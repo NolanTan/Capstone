@@ -62,13 +62,17 @@ class Memtable extends Component {
     render() {
         // Displayed in memtable visualization
         const baseLevelNodes = this.memtable.getBaseLevel();
+        const { foundId } = this.props; // Get foundId from props
 
         return (
             <div className="memtable-container">
                 <h3>Memtable:</h3>
                 <div className={this.size === 0 ? "" : "memtable"}>
                     {baseLevelNodes.map((node, index) => (
-                        <div key={index} className="memtable-item">
+                        <div 
+                            key={index} 
+                            className={`memtable-item${foundId === node.key ? " found" : ""}`}
+                        >
                             {node.key}: {node.value}
                         </div>
                     ))}
