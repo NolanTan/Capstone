@@ -12,7 +12,7 @@
     CS 496: Capstone II
     Advisor: Dr. Holliday
     Author: Nolan Flinchum
-    Version: 2/14/2024
+    Version: 2/27/2024
 
 ## Description
     An LSM-tree is a data structure with performance characteristics that make it very attractive
@@ -60,6 +60,7 @@
         - Compaction
         - Bloom filters
         - Deleting scripts
+        - User's Guide
         - Learning Jest
         - More...
 
