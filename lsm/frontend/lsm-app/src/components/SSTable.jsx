@@ -48,7 +48,7 @@ class SSTable extends Component {
                 else end = mid - 1;
             }
         }
-        
+
         return null;
     }
 
@@ -67,7 +67,8 @@ class SSTable extends Component {
                     {this.props.data.map((item, index) => (
                         <div 
                             key={index}
-                            className={`sstable-item${foundId === item.key ? " found" : ""}`}
+                            className={`sstable-item
+                                ${foundId === item.key && this.props.bf === "1" ? " found" : ""}`}
                         >
                             {item.key}: {item.value}
                         </div>
