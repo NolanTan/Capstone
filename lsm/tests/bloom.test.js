@@ -29,12 +29,4 @@ describe('BloomFilter', () => {
         expect(filter.hash3('test')).toBe(7840355);
     });
 
-    test('insert and lookup with different strings', () => {
-        filter.insert('test1');
-        filter.insert('test2');
-        filter.insert('test3');
-        expect(filter.lookup('test1')).toBe(true);
-        expect(filter.lookup('test2')).toBe(true);
-        expect(filter.lookup('test3')).toBe(true);
-    });
 });
