@@ -6,12 +6,13 @@
  * @version 2/14/2024
  */
 
+require("dotenv").config();
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const express = require("express");
 const cors = require('cors');
 
 // Create MongoDB client using MongoDB connection URI
-const uri = "mongodb+srv://nolantan:2WoVXbGqDimBF4Cz@cluster0.batteob.mongodb.net/?retryWrites=true&w=majority";
+const uri = process.env.MONGO_URI;
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
