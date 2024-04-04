@@ -11,6 +11,9 @@ import './App.css'
  * @returns {JSX.Element} The JSX representing the application layout.
  */
 function App() {
+  // Constant for User Guide URL
+  const USER_GUIDE = 'https://nolantan.github.io/Capstone-User-Guide/';
+
   // UseState variables for managing script data and UI popups
   const[scriptsArray, setScriptsArray] = useState([]);
   const[scriptNum, setScriptNum] = useState(0);
@@ -118,6 +121,10 @@ function App() {
         </Popup>
 
         <Popup trigger={savePopup} setTrigger={setSavePopup}><SaveForm/></Popup>
+
+        <div className="card">
+          <button onClick={() => window.open(USER_GUIDE, '_blank')}>?</button>
+        </div>
       </div>
     </div>
   )
