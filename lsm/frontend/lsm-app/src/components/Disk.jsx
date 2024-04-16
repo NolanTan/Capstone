@@ -3,6 +3,9 @@ import SSTable from './SSTable';
 import './LSMTree.css';
 import Level from './Level';
 
+/** Tombstone marker. */
+const TOMBSTONE = "~DELETED~";
+
 /**
  * Class representing the Disk component.
  * 
@@ -34,7 +37,10 @@ class Disk extends Component {
         let result = null;
         for(let i = 0; i < this.levels.length; i++) {
             result = this.levels[i].search(id);
-            if(result != null) return result;
+            if(result != null) {
+                if(result === TOMBSTONE) return null; // Data was deleted
+                else return result; // Data found
+            }
         }
         return result; // Return null if nothing was found
     }

@@ -6,6 +6,9 @@ import './LSMTree.css';
 /** Max size of items in the memtable. */
 const MEMTABLE_SIZE_LIMIT = 10;
 
+/** Tombstone marker. */
+const TOMBSTONE = "~DELETED~";
+
 /**
  * Class representing the LSM-tree component.
  * 
@@ -46,28 +49,9 @@ class LSMTree extends Component {
      */
     processInstruction = (instruction) => {
         const [operation, id, name] = instruction.split(' ');
+        let result = this.memtableRef.current.search(id); // Check if key exists in memtable
 
-        if(operation === "W") {
-            let result = this.memtableRef.current.search(id); // Check if key already exists
-
-            if(result === null) { // ID does not exist -> write normally
-                if(this.memtableRef.current.size >= MEMTABLE_SIZE_LIMIT) { // Flushing
-                    let nodes = this.memtableRef.current.memtable.getBaseLevel();
-                    this.diskRef.current.addSSTable(nodes); // Create SSTable with memtable data
-                    this.memtableRef.current.clear(); // Clear SkipList/Memtable for new data
-                }
-
-                this.memtableRef.current.insert(id, name); // Insertion into Memtable
-                this.setState({ commandResult: `Welcome, ${name}` });
-
-            } else { // ID already exists -> update value 
-                this.memtableRef.current.update(id, name); // Update with the most up-to-date name
-                this.setState({ commandResult: `Updated ${id}: Welcome, ${name}` });
-            }
-
-        } else if(operation === "R") {
-            let result = this.memtableRef.current.search(id);
-
+        if(operation === "R") {
             if(result === null) // If not in Memtable, look in SSTables
                 result = this.diskRef.current.search(id);
 
@@ -75,6 +59,30 @@ class LSMTree extends Component {
                 this.setState({ commandResult: `ID ${id} not found in LSM Tree` });
             else // Result found
                 this.setState({ commandResult: `Read result of ${id}: ${result}`, foundId: id });
+        } else if (operation === "D" | operation === "W") {
+            if(result === null) {
+                if(this.memtableRef.current.size >= MEMTABLE_SIZE_LIMIT) { // Flushing
+                    let nodes = this.memtableRef.current.memtable.getBaseLevel();
+                    this.diskRef.current.addSSTable(nodes); // Create SSTable with memtable data
+                    this.memtableRef.current.clear(); // Clear SkipList/Memtable for new data
+                }
+
+                if (operation === "W") {
+                    this.memtableRef.current.insert(id, name); // Insert data
+                    this.setState({ commandResult: `Welcome, ${name}` });
+                } else if (operation === "D") {
+                    this.memtableRef.current.insert(id, TOMBSTONE); // Insert tombstone
+                    this.setState({ commandResult: `Goodbye, ${id}` });
+                }
+            } else {
+                if (operation === "W") {
+                    this.memtableRef.current.update(id, name); // Update with most up-to-date name
+                    this.setState({ commandResult: `Updated ${id}: Welcome, ${name}` });
+                } else if (operation === "D") {
+                    this.memtableRef.current.update(id, TOMBSTONE); // Overwrite with tombstone
+                    this.setState({ commandResult: `Updated ${id}: Goodbye` });
+                }
+            }
         }
     }
 

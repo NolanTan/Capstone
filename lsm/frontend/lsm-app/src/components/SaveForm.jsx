@@ -35,7 +35,7 @@ function SaveForm() {
      * @param {string} input - The input value to check.
      */
     const checkInstructionsFormat = (input) => {
-        const validFormat = /^(W \d+ [A-Za-z]+|R \d+)(, (W \d+ [A-Za-z]+|R \d+))*$/;
+        const validFormat = /^(W \d+ [A-Za-z]+|[RD] \d+)(, (W \d+ [A-Za-z]+|[RD] \d+))*$/;
         if(validFormat.test(input)) setInstructionsError(false);
         else setInstructionsError(true);
     }

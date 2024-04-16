@@ -2,6 +2,9 @@ import { Component } from 'react';
 import SkipList from './SkipList';
 import './LSMTree.css';
 
+/** Tombstone marker. */
+const TOMBSTONE = "~DELETED~";
+
 /**
  * Class representing the Memtable component.
  * 
@@ -34,7 +37,9 @@ class Memtable extends Component {
      * @returns {string|null} The value associated with the ID, or null if not found.
      */   
     search(id) {
-        return this.memtable.search(id);
+        let result = this.memtable.search(id);
+        if(result === TOMBSTONE) return null; // Data was deleted
+        else return result; // Data found
     }
 
     /**
