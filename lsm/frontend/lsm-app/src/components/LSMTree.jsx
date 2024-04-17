@@ -59,7 +59,7 @@ class LSMTree extends Component {
                 this.setState({ commandResult: `ID ${id} not found in LSM Tree` });
             else // Result found
                 this.setState({ commandResult: `Read result of ${id}: ${result}`, foundId: id });
-        } else if (operation === "D" | operation === "W") {
+        } else if (operation === "D" || operation === "W") {
             if(result === null) {
                 if(this.memtableRef.current.size >= MEMTABLE_SIZE_LIMIT) { // Flushing
                     let nodes = this.memtableRef.current.memtable.getBaseLevel();
