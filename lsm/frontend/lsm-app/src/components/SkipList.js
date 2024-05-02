@@ -11,6 +11,7 @@
 class ListNode {
     /**
      * Create a ListNode.
+     * 
      * @param {string} key - The key of the node.
      * @param {string} value - The value associated with the key.
      */
@@ -36,6 +37,7 @@ class SkipList {
 
 /**
  * Inserts a key-value pair into the SkipList.
+ * 
  * @param {string} key - The key to be inserted.
  * @param {string} value - The value associated with the key.
  */
@@ -78,6 +80,7 @@ SkipList.prototype.insert = function(key, value) {
 
 /**
  * Searches for a key in the SkipList and returns its value if found.
+ * 
  * @param {string} key - The key to search for.
  * @returns {string|null} The value associated with the key, or null if not found.
  */
@@ -96,6 +99,7 @@ SkipList.prototype.search = function(key) {
 
 /**
  * Updates the value associated with a given key in the SkipList.
+ * 
  * @param {string} key - The key to update.
  * @param {string} newValue - The new value to assign to the key.
  * @returns {boolean} - True if the key was found and updated, false otherwise.
@@ -125,6 +129,7 @@ SkipList.prototype.update = function(key, newValue) {
 
 /**
  * Returns all nodes at the base level of the SkipList for display purposes.
+ * 
  * @returns {Array} - The array of nodes at the base level.
  */
 SkipList.prototype.getBaseLevel = function() {
@@ -142,6 +147,7 @@ SkipList.prototype.getBaseLevel = function() {
 
 /**
  * Returns all levels of the SkipList (for testing or bug fixing).
+ * 
  * @returns {Array<Array<ListNode>>} - An array containing arrays of nodes at each level.
  */
 SkipList.prototype.getAllLevels = function() {

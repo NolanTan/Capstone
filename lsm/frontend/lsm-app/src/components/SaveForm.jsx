@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 /**
  * Functional component representing a form for saving data.
+ * 
  * @returns {JSX.Element} JSX for rendering the SaveForm component.
  */
 function SaveForm() {
@@ -13,6 +14,7 @@ function SaveForm() {
 
     /**
      * Handles the event of value1 input changing.
+     * 
      * @param {Event} e - The event object.
      */
     const handleValue1Change = (e) => {
@@ -22,6 +24,7 @@ function SaveForm() {
 
     /**
      * Handles the event of value2 input changing. Checks the format of instructions.
+     * 
      * @param {Event} e - The event object.
      */
     const handleValue2Change = (e) => {
@@ -32,6 +35,7 @@ function SaveForm() {
 
     /**
      * Checks the format of instructions using RegEx.
+     * 
      * @param {string} input - The input value to check.
      */
     const checkInstructionsFormat = (input) => {
@@ -42,6 +46,7 @@ function SaveForm() {
 
     /**
      * Event handler for form submission.
+     * 
      * @param {Event} e - The event object.
      */    
     const handleSubmit = async (e) => {

@@ -9,7 +9,7 @@ const TOMBSTONE = "~DELETED~";
  * Class representing the Memtable component.
  * 
  * @author Nolan Flinchum
- * @version 12/5/2023
+ * @version 5/1/2024
  */
 class Memtable extends Component { 
     /**
@@ -23,6 +23,7 @@ class Memtable extends Component {
 
     /**
      * Inserts data into the Memtable/SkipList.
+     * 
      * @param {string} id - The ID to be inserted.
      * @param {string} name - The name associated with the ID.
      */    
@@ -33,6 +34,7 @@ class Memtable extends Component {
 
     /**
      * Searches for an ID in the Memtable/SkipList.
+     * 
      * @param {string} id - The ID to search for.
      * @returns {string|null} The value associated with the ID, or null if not found.
      */   
@@ -44,6 +46,7 @@ class Memtable extends Component {
 
     /**
      * Updates an existing ID in the Memtable.
+     * 
      * @param {string} id - The ID to update.
      * @param {string} newValue - The new value to assign to the ID.
      * @returns {boolean} - True if the ID was found and updated, false otherwise.
@@ -62,11 +65,11 @@ class Memtable extends Component {
 
     /**
      * Renders the Memtable component.
+     * 
      * @returns {JSX.Element} - JSX for rendering the Memtable component.
      */
     render() {
-        // Displayed in memtable visualization
-        const baseLevelNodes = this.memtable.getBaseLevel();
+        const baseLevelNodes = this.memtable.getBaseLevel(); // Displayed in memtable visualization
         const { foundId } = this.props; // Get foundId from props
 
         return (

@@ -13,11 +13,12 @@ const TOMBSTONE = "~DELETED~";
  * Class representing the LSM-tree component.
  * 
  * @author Nolan Flinchum
- * @version 12/5/2023
+ * @version 5/1/2024
  */
 class LSMTree extends Component {
     /**
      * Creates an instance of an LSM-tree
+     * 
      * @param {object} props - The props object
      */
     constructor(props) {
@@ -33,6 +34,7 @@ class LSMTree extends Component {
 
     /**
      * React lifecycle method. Resets index and clears everything if LSM-tree component updates.
+     * 
      * @param {object} prevProps - The previous props of the component.
      */   
     componentDidUpdate(prevProps) {
@@ -45,6 +47,7 @@ class LSMTree extends Component {
 
     /**
      * Processes an instruction and performs the necessary operations.
+     * 
      * @param {string} instruction - The instruction to be processed.
      */
     processInstruction = (instruction) => {
@@ -105,7 +108,7 @@ class LSMTree extends Component {
     }
 
     /**
-     * Do ten instructions.
+     * Does ten instructions.
      */
     doTen = async () => {
         for (let i = 0; i < 10; i++) {
@@ -116,6 +119,7 @@ class LSMTree extends Component {
 
     /**
      * Renders the LSMTree component.
+     * 
      * @returns {JSX.Element} - JSX for rendering the LSMTree component.
      */
     render() {

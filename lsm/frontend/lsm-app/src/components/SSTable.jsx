@@ -2,11 +2,15 @@ import { Component } from 'react';
 import './LSMTree.css';
 import BloomFilter from './BloomFilter';
 
+/** Size of the Bloom Filter */
+const BIT_ARRAY_SIZE = 1000;
+
+
 /**
  * A React component representing an SSTable.
  * 
  * @author Nolan Flinchum 
- * @version 12/5/2023
+ * @version 5/1/2024
  */
 class SSTable extends Component {
     /**
@@ -15,12 +19,13 @@ class SSTable extends Component {
     constructor() {
         super();
         this.data = [];
-        this.bloomFilter = new BloomFilter(1000);
+        this.bloomFilter = new BloomFilter(BIT_ARRAY_SIZE);
         this.bloomFilterStatus = "";
     }
 
     /**
      * Inserts a key-value pair into the SSTable and sorts it by key.
+     * 
      * @param {string} key - The key to insert (ID).
      * @param {string} value - The value associated with the key (name).
      */
@@ -32,6 +37,7 @@ class SSTable extends Component {
 
     /**
      * Retrieves a value from the SSTable (using binary search) based on the given key.
+     * 
      * @param {string} key - The key to search for.
      * @returns {string|null} The value associated with the key, or null if not found.
      */
@@ -54,6 +60,7 @@ class SSTable extends Component {
 
     /**
      * Renders the SSTable component. Displays the SSTable data passed as props.
+     * 
      * @returns {JSX.Element} - JSX for rendering the SSTable.
      */
     render() {

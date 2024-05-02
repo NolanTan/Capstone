@@ -12,7 +12,7 @@
     CS 496: Capstone II
     Advisor: Dr. Holliday
     Author: Nolan Flinchum
-    Version: 2/27/2024
+    Version: 5/1/2024
 
 ## Description
     An LSM-tree is a data structure with performance characteristics that make it very attractive
@@ -21,6 +21,8 @@
     improve read and write performance.
 
     This project aims to create a web application to educate users on LSM-trees. 
+
+    This project employs the MERN stack and uses Jest for testing.
 
 ## Dependencies
     If this is your first time running the program, read the following:
@@ -53,19 +55,8 @@
             `npm run dev`
         to run the frontend.
 
-## More Info
-    This project is currently in development. It employs the MERN stack and uses Jest for testing.
-
-    Currently working on:
-        - Compaction
-        - Bloom filters
-        - Deleting scripts
-        - User's Guide
-        - Learning Jest
-        - More...
-
 ## Questions?
-    If you have any questions about this project, feel free to reach out
+    If you have any questions about this project, feel free to reach out.
 
     Email: nolan@flinchum.net or ntflinchum1@catamount.wcu.edu
     Discord: nolantan

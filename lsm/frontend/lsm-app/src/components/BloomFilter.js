@@ -8,6 +8,7 @@ class BloomFilter {
 
     /**
      * Initializes the size and bit array for the Bloom filter.
+     * 
      * @param {int} size - size of the bit array.
      */
     constructor(size) {
@@ -20,7 +21,7 @@ class BloomFilter {
      * provided string using three hash functions, and then set the corresponding bits in the
      * bit array to true.
      * 
-     * @param {String} s - input string.
+     * @param {string} s - input string.
      */
     insert(s) {
         const indexes = this.calculateIndexes(s);
@@ -32,7 +33,7 @@ class BloomFilter {
      * then we can say that the data we're looking for might be there. If one of the indexes maps
      * to a 0, then we can say the data is definitely no there. 
      * 
-     * @param {*} s - input string.
+     * @param {string} s - input string.
      * @returns true if every index has a 1, false otherwise.
      */
     lookup(s) {
@@ -43,7 +44,7 @@ class BloomFilter {
     /**
      * Hashes the input string using each hash to calculate the resulting index of the bit array.
      * 
-     * @param {*} s - input string.
+     * @param {string} s - input string.
      * @returns an array containing the indexes.
      */
     calculateIndexes(s) {
@@ -57,7 +58,7 @@ class BloomFilter {
     /**
      * Hash function 1 for the Bloom filter.
      * 
-     * @param {String} input - input string to be iterated through.
+     * @param {string} input - input string to be iterated through.
      * @returns hash of the string.
      */
     hash1(input) {
@@ -74,7 +75,7 @@ class BloomFilter {
     /**
      * Hash function 2 for the Bloom filter.
      * 
-     * @param {String} input - input string to be iterated through.
+     * @param {string} input - input string to be iterated through.
      * @returns hash of the string.
      */
     hash2(input) {
@@ -91,7 +92,7 @@ class BloomFilter {
     /**
      * Hash function 3 for the Bloom filter.
      * 
-     * @param {String} input - input string to be iterated through.
+     * @param {string} input - input string to be iterated through.
      * @returns hash of the string.
      */
     hash3(input) {

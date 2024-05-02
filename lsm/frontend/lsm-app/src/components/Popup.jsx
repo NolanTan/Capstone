@@ -2,6 +2,7 @@ import './Popup.css';
 
 /**
  * Functional component representing a popup.
+ * 
  * @param {Object} props - The properties passed to the component.
  * @param {boolean} props.trigger - Boolean to show/hide the popup.
  * @param {Function} props.setTrigger - Function to set the trigger value.

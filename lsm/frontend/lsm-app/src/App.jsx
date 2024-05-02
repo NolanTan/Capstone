@@ -8,6 +8,7 @@ import './App.css'
 /**
  * Main application component rendering the entire application.
  * Manages script data, UI popups, fetching data, and script instructions.
+ * 
  * @returns {JSX.Element} The JSX representing the application layout.
  */
 function App() {
@@ -55,6 +56,7 @@ function App() {
 
   /**
    * Converts script text into an array of instructions.
+   * 
    * @param {string} text - The script text to convert.
    * @returns {string[]} An array of script instructions.
    */
