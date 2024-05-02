@@ -55,10 +55,10 @@ class LSMTree extends Component {
         let result = this.memtableRef.current.search(id); // Check if key exists in memtable
 
         if(operation === "R") {
-            if(result === null) // If not in Memtable, look in SSTables
+            if(result === null && result !== TOMBSTONE) // If not in Memtable, look in SSTables
                 result = this.diskRef.current.search(id);
 
-            if(result === null) // Result not found
+            if(result === null || result === TOMBSTONE) // Result not found
                 this.setState({ commandResult: `ID ${id} not found in LSM Tree` });
             else // Result found
                 this.setState({ commandResult: `Read result of ${id}: ${result}`, foundId: id });

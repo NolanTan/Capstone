@@ -40,8 +40,7 @@ class Memtable extends Component {
      */   
     search(id) {
         let result = this.memtable.search(id);
-        if(result === TOMBSTONE) return null; // Data was deleted
-        else return result; // Data found
+        return result; // Data found
     }
 
     /**
