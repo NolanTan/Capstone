@@ -71,6 +71,8 @@ class Memtable extends Component {
         const baseLevelNodes = this.memtable.getBaseLevel(); // Displayed in memtable visualization
         const { foundId } = this.props; // Get foundId from props
 
+        console.log(this.memtable.getAllLevels()); // For testing
+
         return (
             <div className="memtable-container">
                 <h3>Memtable:</h3>
