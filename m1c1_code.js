@@ -1,5 +1,5 @@
 /** Mark Holliday
- * Module 1 Chapter 1 code
+ * Module 1 Chapter 1 code mh
  */
 // typeof operator
 function doit(param1) {
